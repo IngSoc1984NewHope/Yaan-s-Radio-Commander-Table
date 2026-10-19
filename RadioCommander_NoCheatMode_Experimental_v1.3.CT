@@ -1,0 +1,591 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable UsesMono="1" CheatEngineTableVersion="52">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>0</ID>
+      <Description>"Infinite ammunition - friendly [v0.3 test]"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+{$lua}
+if syntaxcheck then return '' end
+if not getOpenedProcessID() or getOpenedProcessID()==0 then error('Attach to Radio Commander first') end
+local mono=LaunchMonoDataCollector()
+if not mono or mono==0 then error('Mono not detected. Attach to the running Radio Commander game.') end
+local function check(ns,cl,fname,offset)
+  local c=mono_findClass(ns,cl)
+  if not c or c==0 then error('Class missing: '..ns..'.'..cl) end
+  local fields=mono_class_enumFields(c) or {}
+  for _,f in ipairs(fields) do
+    if f.name==fname then
+      if f.offset~=offset then error('Offset mismatch: '..ns..'.'..cl..'.'..fname..' expected '..string.format('%X',offset)..' got '..tostring(f.offset)) end
+      return
+    end
+  end
+  error('Field missing: '..ns..'.'..cl..'.'..fname)
+end
+check("Radio","UnitController","unitStats",0x18)
+check("Radio","SM_UniversalStatsSO","unitStats",0x18)
+check("Radio","UnitStats","unitSide",0x1A8)
+local class=mono_findClass('Radio','UnitController')
+if not class or class==0 then error('Missing class Radio.UnitController') end
+local method=mono_class_findMethod(class,'AddSupplies')
+if not method or method==0 then error('Missing method Radio.UnitController.AddSupplies') end
+local address=mono_compile_method(method)
+if not address or address==0 then error('Could not compile method Radio.UnitController.AddSupplies') end
+return ([[
+define(RC_AMMO_ADDR,0x%X)
+assert(RC_AMMO_ADDR,55 48 8B EC 48 83 EC 50 48 89 75 F0 48 89 7D F8)
+alloc(RC_AMMO_MEM,4096,RC_AMMO_ADDR)
+label(RC_AMMO_CODE)
+label(RC_AMMO_ORIG)
+label(RC_AMMO_RET)
+label(RC_AMMO_ALLOW)
+label(RC_AMMO_ZERO)
+registersymbol(RC_AMMO_ADDR)
+registersymbol(RC_AMMO_ORIG)
+RC_AMMO_MEM:
+RC_AMMO_CODE:
+  push rax
+  test rcx,rcx
+  je RC_AMMO_ALLOW
+  mov rax,[rcx+18]
+  test rax,rax
+  je RC_AMMO_ALLOW
+  mov rax,[rax+18]
+  test rax,rax
+  je RC_AMMO_ALLOW
+  cmp dword ptr [rax+1A8],0
+  jne RC_AMMO_ALLOW
+  // Keep positive refills and block ONLY negative supply changes.
+  ucomiss xmm1,[RC_AMMO_ZERO]
+  jp RC_AMMO_ALLOW
+  jae RC_AMMO_ALLOW
+  pop rax
+  ret
+RC_AMMO_ALLOW:
+  pop rax
+  jmp RC_AMMO_ORIG
+RC_AMMO_ZERO:
+  dd 00000000
+RC_AMMO_ORIG:
+  readmem(RC_AMMO_ADDR,16)
+  // Fixed-size absolute jump back to the real original method.
+  db FF 25 00 00 00 00
+  dq RC_AMMO_RET
+RC_AMMO_ADDR:
+  // Fixed-size 14-byte indirect JMP, independent of +/-2GB range.
+  db FF 25 00 00 00 00
+  dq RC_AMMO_CODE
+  db 90 90
+RC_AMMO_RET:
+
+]]):format(address)
+{$asm}
+[DISABLE]
+RC_AMMO_ADDR:
+  readmem(RC_AMMO_ORIG,16)
+unregistersymbol(RC_AMMO_ORIG)
+unregistersymbol(RC_AMMO_ADDR)
+dealloc(RC_AMMO_MEM)
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>1</ID>
+      <Description>"Infinite stamina - friendly [v0.3 test]"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+{$lua}
+if syntaxcheck then return '' end
+if not getOpenedProcessID() or getOpenedProcessID()==0 then error('Attach to Radio Commander first') end
+local mono=LaunchMonoDataCollector()
+if not mono or mono==0 then error('Mono not detected. Attach to the running Radio Commander game.') end
+local function check(ns,cl,fname,offset)
+  local c=mono_findClass(ns,cl)
+  if not c or c==0 then error('Class missing: '..ns..'.'..cl) end
+  local fields=mono_class_enumFields(c) or {}
+  for _,f in ipairs(fields) do
+    if f.name==fname then
+      if f.offset~=offset then error('Offset mismatch: '..ns..'.'..cl..'.'..fname..' expected '..string.format('%X',offset)..' got '..tostring(f.offset)) end
+      return
+    end
+  end
+  error('Field missing: '..ns..'.'..cl..'.'..fname)
+end
+check("Radio","UnitController","unitStats",0x18)
+check("Radio","SM_UniversalStatsSO","unitStats",0x18)
+check("Radio","UnitStats","unitSide",0x1A8)
+check("Radio","StaminaUnitController","unitController",0x20)
+local class=mono_findClass('Radio','StaminaUnitController')
+if not class or class==0 then error('Missing class Radio.StaminaUnitController') end
+local method=mono_class_findMethod(class,'ConsumeStamina')
+if not method or method==0 then error('Missing method Radio.StaminaUnitController.ConsumeStamina') end
+local address=mono_compile_method(method)
+if not address or address==0 then error('Could not compile method Radio.StaminaUnitController.ConsumeStamina') end
+return ([[
+define(RC_STA_ADDR,0x%X)
+assert(RC_STA_ADDR,55 48 8B EC 48 81 EC 30 01 00 00 48 89 75 F0 48 89 7D F8)
+alloc(RC_STA_MEM,4096,RC_STA_ADDR)
+label(RC_STA_CODE)
+label(RC_STA_ORIG)
+label(RC_STA_RET)
+label(RC_STA_ALLOW)
+registersymbol(RC_STA_ADDR)
+registersymbol(RC_STA_ORIG)
+RC_STA_MEM:
+RC_STA_CODE:
+  push rax
+  test rcx,rcx
+  je RC_STA_ALLOW
+  mov rax,[rcx+20]
+  test rax,rax
+  je RC_STA_ALLOW
+  mov rax,[rax+18]
+  test rax,rax
+  je RC_STA_ALLOW
+  mov rax,[rax+18]
+  test rax,rax
+  je RC_STA_ALLOW
+  cmp dword ptr [rax+1A8],0
+  jne RC_STA_ALLOW
+  pop rax
+  ret
+RC_STA_ALLOW:
+  pop rax
+  jmp RC_STA_ORIG
+RC_STA_ORIG:
+  readmem(RC_STA_ADDR,19)
+  // Fixed-size absolute jump back to the real original method.
+  db FF 25 00 00 00 00
+  dq RC_STA_RET
+RC_STA_ADDR:
+  // Fixed-size 14-byte indirect JMP, independent of +/-2GB range.
+  db FF 25 00 00 00 00
+  dq RC_STA_CODE
+  db 90 90 90 90 90
+RC_STA_RET:
+
+]]):format(address)
+{$asm}
+[DISABLE]
+RC_STA_ADDR:
+  readmem(RC_STA_ORIG,19)
+unregistersymbol(RC_STA_ORIG)
+unregistersymbol(RC_STA_ADDR)
+dealloc(RC_STA_MEM)
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>2</ID>
+      <Description>"Infinite fuel - friendly [v0.3 test]"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+{$lua}
+if syntaxcheck then return '' end
+if not getOpenedProcessID() or getOpenedProcessID()==0 then error('Attach to Radio Commander first') end
+local mono=LaunchMonoDataCollector()
+if not mono or mono==0 then error('Mono not detected. Attach to the running Radio Commander game.') end
+local function check(ns,cl,fname,offset)
+  local c=mono_findClass(ns,cl)
+  if not c or c==0 then error('Class missing: '..ns..'.'..cl) end
+  local fields=mono_class_enumFields(c) or {}
+  for _,f in ipairs(fields) do
+    if f.name==fname then
+      if f.offset~=offset then error('Offset mismatch: '..ns..'.'..cl..'.'..fname..' expected '..string.format('%X',offset)..' got '..tostring(f.offset)) end
+      return
+    end
+  end
+  error('Field missing: '..ns..'.'..cl..'.'..fname)
+end
+check("Radio","UnitController","unitStats",0x18)
+check("Radio","SM_UniversalStatsSO","unitStats",0x18)
+check("Radio","UnitStats","unitSide",0x1A8)
+check("Radio","FuelUnitController","unitController",0x20)
+local class=mono_findClass('Radio','FuelUnitController')
+if not class or class==0 then error('Missing class Radio.FuelUnitController') end
+local method=mono_class_findMethod(class,'ConsumeFuel')
+if not method or method==0 then error('Missing method Radio.FuelUnitController.ConsumeFuel') end
+local address=mono_compile_method(method)
+if not address or address==0 then error('Could not compile method Radio.FuelUnitController.ConsumeFuel') end
+return ([[
+define(RC_FUEL_ADDR,0x%X)
+assert(RC_FUEL_ADDR,55 48 8B EC 48 83 EC 50 48 89 75 F8 48 8B F1)
+alloc(RC_FUEL_MEM,4096,RC_FUEL_ADDR)
+label(RC_FUEL_CODE)
+label(RC_FUEL_ORIG)
+label(RC_FUEL_RET)
+label(RC_FUEL_ALLOW)
+registersymbol(RC_FUEL_ADDR)
+registersymbol(RC_FUEL_ORIG)
+RC_FUEL_MEM:
+RC_FUEL_CODE:
+  push rax
+  test rcx,rcx
+  je RC_FUEL_ALLOW
+  mov rax,[rcx+20]
+  test rax,rax
+  je RC_FUEL_ALLOW
+  mov rax,[rax+18]
+  test rax,rax
+  je RC_FUEL_ALLOW
+  mov rax,[rax+18]
+  test rax,rax
+  je RC_FUEL_ALLOW
+  cmp dword ptr [rax+1A8],0
+  jne RC_FUEL_ALLOW
+  pop rax
+  ret
+RC_FUEL_ALLOW:
+  pop rax
+  jmp RC_FUEL_ORIG
+RC_FUEL_ORIG:
+  readmem(RC_FUEL_ADDR,15)
+  // Fixed-size absolute jump back to the real original method.
+  db FF 25 00 00 00 00
+  dq RC_FUEL_RET
+RC_FUEL_ADDR:
+  // Fixed-size 14-byte indirect JMP, independent of +/-2GB range.
+  db FF 25 00 00 00 00
+  dq RC_FUEL_CODE
+  db 90
+RC_FUEL_RET:
+
+]]):format(address)
+{$asm}
+[DISABLE]
+RC_FUEL_ADDR:
+  readmem(RC_FUEL_ORIG,15)
+unregistersymbol(RC_FUEL_ORIG)
+unregistersymbol(RC_FUEL_ADDR)
+dealloc(RC_FUEL_MEM)
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>3</ID>
+      <Description>"Friendly invulnerability [v0.3 test]"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+{$lua}
+if syntaxcheck then return '' end
+if not getOpenedProcessID() or getOpenedProcessID()==0 then error('Attach to Radio Commander first') end
+local mono=LaunchMonoDataCollector()
+if not mono or mono==0 then error('Mono not detected. Attach to the running Radio Commander game.') end
+local function check(ns,cl,fname,offset)
+  local c=mono_findClass(ns,cl)
+  if not c or c==0 then error('Class missing: '..ns..'.'..cl) end
+  local fields=mono_class_enumFields(c) or {}
+  for _,f in ipairs(fields) do
+    if f.name==fname then
+      if f.offset~=offset then error('Offset mismatch: '..ns..'.'..cl..'.'..fname..' expected '..string.format('%X',offset)..' got '..tostring(f.offset)) end
+      return
+    end
+  end
+  error('Field missing: '..ns..'.'..cl..'.'..fname)
+end
+check("Radio","UnitController","unitStats",0x18)
+check("Radio","SM_UniversalStatsSO","unitStats",0x18)
+check("Radio","UnitStats","unitSide",0x1A8)
+
+local cl_HIT=mono_findClass('Radio','UnitController')
+if not cl_HIT or cl_HIT==0 then error('Missing class Radio.UnitController') end
+local m_HIT=mono_class_findMethod(cl_HIT,'DamageTaken')
+if not m_HIT or m_HIT==0 then error('Missing method UnitController.DamageTaken') end
+local a_HIT=mono_compile_method(m_HIT)
+if not a_HIT or a_HIT==0 then error('JIT compile failed for UnitController.DamageTaken') end
+local cl_SIMPLE=mono_findClass('Radio','UnitController')
+if not cl_SIMPLE or cl_SIMPLE==0 then error('Missing class Radio.UnitController') end
+local m_SIMPLE=mono_class_findMethod(cl_SIMPLE,'DamageTakenSimple')
+if not m_SIMPLE or m_SIMPLE==0 then error('Missing method UnitController.DamageTakenSimple') end
+local a_SIMPLE=mono_compile_method(m_SIMPLE)
+if not a_SIMPLE or a_SIMPLE==0 then error('JIT compile failed for UnitController.DamageTakenSimple') end
+local cl_DEAD=mono_findClass('Radio','UnitController')
+if not cl_DEAD or cl_DEAD==0 then error('Missing class Radio.UnitController') end
+local m_DEAD=mono_class_findMethod(cl_DEAD,'HealthyToDeadCore')
+if not m_DEAD or m_DEAD==0 then error('Missing method UnitController.HealthyToDeadCore') end
+local a_DEAD=mono_compile_method(m_DEAD)
+if not a_DEAD or a_DEAD==0 then error('JIT compile failed for UnitController.HealthyToDeadCore') end
+local script=[[define(RC_HIT_ADDR,0x__ADDR_HIT__)
+assert(RC_HIT_ADDR,55 48 8B EC 48 83 EC 50 48 89 75 F0 48 89 7D F8)
+alloc(RC_HIT_MEM,4096,RC_HIT_ADDR)
+label(RC_HIT_CODE)
+label(RC_HIT_ORIG)
+label(RC_HIT_RET)
+label(RC_HIT_ALLOW)
+registersymbol(RC_HIT_ADDR)
+registersymbol(RC_HIT_ORIG)
+RC_HIT_MEM:
+RC_HIT_CODE:
+  push rax
+  test rcx,rcx
+  je RC_HIT_ALLOW
+  mov rax,[rcx+18]
+  test rax,rax
+  je RC_HIT_ALLOW
+  mov rax,[rax+18]
+  test rax,rax
+  je RC_HIT_ALLOW
+  cmp dword ptr [rax+1A8],0
+  jne RC_HIT_ALLOW
+  pop rax
+  ret
+RC_HIT_ALLOW:
+  pop rax
+  jmp RC_HIT_ORIG
+RC_HIT_ORIG:
+  readmem(RC_HIT_ADDR,16)
+  // Fixed-size absolute jump back to the real original method.
+  db FF 25 00 00 00 00
+  dq RC_HIT_RET
+RC_HIT_ADDR:
+  // Fixed-size 14-byte indirect JMP, independent of +/-2GB range.
+  db FF 25 00 00 00 00
+  dq RC_HIT_CODE
+  db 90 90
+RC_HIT_RET:
+
+define(RC_SIMPLE_ADDR,0x__ADDR_SIMPLE__)
+assert(RC_SIMPLE_ADDR,55 48 8B EC 48 83 EC 50 48 89 7D E8 4C 89 75 F0)
+alloc(RC_SIMPLE_MEM,4096,RC_SIMPLE_ADDR)
+label(RC_SIMPLE_CODE)
+label(RC_SIMPLE_ORIG)
+label(RC_SIMPLE_RET)
+label(RC_SIMPLE_ALLOW)
+registersymbol(RC_SIMPLE_ADDR)
+registersymbol(RC_SIMPLE_ORIG)
+RC_SIMPLE_MEM:
+RC_SIMPLE_CODE:
+  push rax
+  test rcx,rcx
+  je RC_SIMPLE_ALLOW
+  mov rax,[rcx+18]
+  test rax,rax
+  je RC_SIMPLE_ALLOW
+  mov rax,[rax+18]
+  test rax,rax
+  je RC_SIMPLE_ALLOW
+  cmp dword ptr [rax+1A8],0
+  jne RC_SIMPLE_ALLOW
+  pop rax
+  xor eax,eax
+  ret
+RC_SIMPLE_ALLOW:
+  pop rax
+  jmp RC_SIMPLE_ORIG
+RC_SIMPLE_ORIG:
+  readmem(RC_SIMPLE_ADDR,16)
+  // Fixed-size absolute jump back to the real original method.
+  db FF 25 00 00 00 00
+  dq RC_SIMPLE_RET
+RC_SIMPLE_ADDR:
+  // Fixed-size 14-byte indirect JMP, independent of +/-2GB range.
+  db FF 25 00 00 00 00
+  dq RC_SIMPLE_CODE
+  db 90 90
+RC_SIMPLE_RET:
+
+define(RC_DEAD_ADDR,0x__ADDR_DEAD__)
+assert(RC_DEAD_ADDR,55 48 8B EC 48 83 EC 30 48 89 7D F8 48 8B F9 48 89 55 F0)
+alloc(RC_DEAD_MEM,4096,RC_DEAD_ADDR)
+label(RC_DEAD_CODE)
+label(RC_DEAD_ORIG)
+label(RC_DEAD_RET)
+label(RC_DEAD_ALLOW)
+registersymbol(RC_DEAD_ADDR)
+registersymbol(RC_DEAD_ORIG)
+RC_DEAD_MEM:
+RC_DEAD_CODE:
+  push rax
+  test rcx,rcx
+  je RC_DEAD_ALLOW
+  mov rax,[rcx+18]
+  test rax,rax
+  je RC_DEAD_ALLOW
+  mov rax,[rax+18]
+  test rax,rax
+  je RC_DEAD_ALLOW
+  cmp dword ptr [rax+1A8],0
+  jne RC_DEAD_ALLOW
+  pop rax
+  ret
+RC_DEAD_ALLOW:
+  pop rax
+  jmp RC_DEAD_ORIG
+RC_DEAD_ORIG:
+  readmem(RC_DEAD_ADDR,19)
+  // Fixed-size absolute jump back to the real original method.
+  db FF 25 00 00 00 00
+  dq RC_DEAD_RET
+RC_DEAD_ADDR:
+  // Fixed-size 14-byte indirect JMP, independent of +/-2GB range.
+  db FF 25 00 00 00 00
+  dq RC_DEAD_CODE
+  db 90 90 90 90 90
+RC_DEAD_RET:
+]]
+script=script:gsub('__ADDR_HIT__', string.format('%X',a_HIT))
+script=script:gsub('__ADDR_SIMPLE__', string.format('%X',a_SIMPLE))
+script=script:gsub('__ADDR_DEAD__', string.format('%X',a_DEAD))
+return script
+{$asm}
+[DISABLE]
+RC_HIT_ADDR:
+  readmem(RC_HIT_ORIG,16)
+unregistersymbol(RC_HIT_ORIG)
+unregistersymbol(RC_HIT_ADDR)
+dealloc(RC_HIT_MEM)
+RC_SIMPLE_ADDR:
+  readmem(RC_SIMPLE_ORIG,16)
+unregistersymbol(RC_SIMPLE_ORIG)
+unregistersymbol(RC_SIMPLE_ADDR)
+dealloc(RC_SIMPLE_MEM)
+RC_DEAD_ADDR:
+  readmem(RC_DEAD_ORIG,19)
+unregistersymbol(RC_DEAD_ORIG)
+unregistersymbol(RC_DEAD_ADDR)
+dealloc(RC_DEAD_MEM)
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>4</ID>
+      <Description>"Live Squad Position Update"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+{$lua}
+if syntaxcheck then return '' end
+if not getOpenedProcessID() or getOpenedProcessID()==0 then error('Attach to Radio Commander first') end
+local collector=LaunchMonoDataCollector()
+if not collector or collector==0 then error('Mono collector not available') end
+local function check(cl,field,expected)
+  local class=mono_findClass('Radio',cl)
+  if not class or class==0 then error('Missing Radio.'..cl) end
+  local fs=mono_class_enumFields(class) or {}
+  for _,f in ipairs(fs) do
+    if f.name==field then
+      if f.offset~=expected then
+        error('Field offset mismatch Radio.'..cl..'.'..field)
+      end
+      return
+    end
+  end
+  error('Missing field Radio.'..cl..'.'..field)
+end
+check('TokenUpdateController','autoupdateTokens',0x28)
+check('TokenUpdateController','unitController',0x30)
+check('UnitController','unitStats',0x18)
+check('SM_UniversalStatsSO','unitStats',0x18)
+check('UnitStats','unitSide',0x1A8)
+local class=mono_findClass('Radio','TokenUpdateController')
+if not class or class==0 then error('TokenUpdateController not found') end
+local function jit(name)
+  local method=mono_class_findMethod(class,name)
+  if not method or method==0 then error('Method missing: '..name) end
+  local addr=mono_compile_method(method)
+  if not addr or addr==0 then error('JIT failed: '..name) end
+  return addr
+end
+local update=jit('UpdateToken')
+local tick=jit('UpdateMe')
+local aa=[[
+define(RC_MAP_UPDATE_SITE,0x__UPDATE__+2F)
+define(RC_MAP_ME_SITE,0x__ME__+27)
+// The 14-byte regions contain only the configuration read.
+// Refuse unsupported game / Mono JIT builds.
+assert(RC_MAP_UPDATE_SITE,48 8B 47 28 48 8B C8 83 39 00 0F B6 40 30)
+assert(RC_MAP_ME_SITE,48 8B 46 28 48 8B C8 83 39 00 0F B6 40 30)
+alloc(RC_MAP_MEM,4096,RC_MAP_UPDATE_SITE)
+label(RC_MAP_UPDATE_CODE)
+label(RC_MAP_UPDATE_DONE)
+label(RC_MAP_UPDATE_ORIG)
+label(RC_MAP_UPDATE_RET)
+label(RC_MAP_ME_CODE)
+label(RC_MAP_ME_DONE)
+label(RC_MAP_ME_ORIG)
+label(RC_MAP_ME_RET)
+registersymbol(RC_MAP_UPDATE_SITE)
+registersymbol(RC_MAP_ME_SITE)
+registersymbol(RC_MAP_UPDATE_ORIG)
+registersymbol(RC_MAP_ME_ORIG)
+RC_MAP_MEM:
+// UpdateToken(bool force): original ConfigEntity.GetBool reads
+// are preserved for other factions; friendly receives eax=1 ONLY here.
+RC_MAP_UPDATE_CODE:
+  mov rax,[rdi+28]
+  mov rcx,rax
+  cmp dword ptr [rcx],00
+  movzx eax,byte ptr [rax+30]
+  push rdx
+  mov rdx,[rdi+30]
+  test rdx,rdx
+  je RC_MAP_UPDATE_DONE
+  mov rdx,[rdx+18]
+  test rdx,rdx
+  je RC_MAP_UPDATE_DONE
+  mov rdx,[rdx+18]
+  test rdx,rdx
+  je RC_MAP_UPDATE_DONE
+  cmp dword ptr [rdx+1A8],0
+  jne RC_MAP_UPDATE_DONE
+  mov eax,1
+RC_MAP_UPDATE_DONE:
+  pop rdx
+  jmp RC_MAP_UPDATE_RET
+
+// UpdateMe(): patch only the configuration-read result.
+// rsi = this (TokenUpdateController) in this verified JIT build.
+RC_MAP_ME_CODE:
+  mov rax,[rsi+28]
+  mov rcx,rax
+  cmp dword ptr [rcx],00
+  movzx eax,byte ptr [rax+30]
+  push rdx
+  mov rdx,[rsi+30]
+  test rdx,rdx
+  je RC_MAP_ME_DONE
+  mov rdx,[rdx+18]
+  test rdx,rdx
+  je RC_MAP_ME_DONE
+  mov rdx,[rdx+18]
+  test rdx,rdx
+  je RC_MAP_ME_DONE
+  cmp dword ptr [rdx+1A8],0
+  jne RC_MAP_ME_DONE
+  mov eax,1
+RC_MAP_ME_DONE:
+  pop rdx
+  jmp RC_MAP_ME_RET
+
+// Original bytes saved for reversible patching.
+RC_MAP_UPDATE_ORIG:
+  readmem(RC_MAP_UPDATE_SITE,14)
+RC_MAP_ME_ORIG:
+  readmem(RC_MAP_ME_SITE,14)
+
+// Fixed-size 14-byte absolute indirect jumps: no +/-2 GB assumption.
+RC_MAP_UPDATE_SITE:
+  db FF 25 00 00 00 00
+  dq RC_MAP_UPDATE_CODE
+RC_MAP_UPDATE_RET:
+RC_MAP_ME_SITE:
+  db FF 25 00 00 00 00
+  dq RC_MAP_ME_CODE
+RC_MAP_ME_RET:
+]]
+aa=aa:gsub('__UPDATE__',string.format('%X',update))
+aa=aa:gsub('__ME__',string.format('%X',tick))
+return aa
+{$asm}
+[DISABLE]
+RC_MAP_UPDATE_SITE:
+  readmem(RC_MAP_UPDATE_ORIG,14)
+RC_MAP_ME_SITE:
+  readmem(RC_MAP_ME_ORIG,14)
+unregistersymbol(RC_MAP_UPDATE_SITE)
+unregistersymbol(RC_MAP_ME_SITE)
+unregistersymbol(RC_MAP_UPDATE_ORIG)
+unregistersymbol(RC_MAP_ME_ORIG)
+dealloc(RC_MAP_MEM)
+
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+</CheatTable>

@@ -1,0 +1,842 @@
+READ ONLY - JIT native code inspection. No save data is changed.
+
+=== Radio.TokenUpdateController:UpdateToken ===
+JIT address: 0x2A13F759860; size: 541
+2A13F759860 - 55 - push rbp
+2A13F759861 - 48 8B EC  - mov rbp,rsp
+2A13F759864 - 48 83 EC 70 - sub rsp,70
+2A13F759868 - 48 89 75 F0  - mov [rbp-10],rsi
+2A13F75986C - 48 89 7D F8  - mov [rbp-08],rdi
+2A13F759870 - 48 8B F9  - mov rdi,rcx
+2A13F759873 - 48 8B F2  - mov rsi,rdx
+2A13F759876 - 48 8B 4F 28  - mov rcx,[rdi+28]
+2A13F75987A - 33 D2  - xor edx,edx
+2A13F75987C - 66 90 - nop 2
+2A13F75987E - 49 BB D329AE42A1020000 - mov r11,000002A142AE29D3
+2A13F759888 - 41 FF D3  - call r11
+2A13F75988B - 85 C0  - test eax,eax
+2A13F75988D - 74 17 - je 2A13F7598A6
+2A13F75988F - 48 8B 47 28  - mov rax,[rdi+28]
+2A13F759893 - 48 8B C8  - mov rcx,rax
+2A13F759896 - 83 39 00 - cmp dword ptr [rcx],00
+2A13F759899 - 0FB6 40 30  - movzx eax,byte ptr [rax+30]
+2A13F75989D - 85 C0  - test eax,eax
+2A13F75989F - 75 27 - jne 2A13F7598C8
+2A13F7598A1 - E9 C9010000 - jmp 2A13F759A6F
+2A13F7598A6 - 48 B9 60EE475DA1020000 - mov rcx,000002A15D47EE60
+2A13F7598B0 - 48 8D 64 24 00  - lea rsp,[rsp+00]
+2A13F7598B5 - 90 - nop 
+2A13F7598B6 - 49 BB DB0BA65BA1020000 - mov r11,000002A15BA60BDB
+2A13F7598C0 - 41 FF D3  - call r11
+2A13F7598C3 - E9 A7010000 - jmp 2A13F759A6F
+2A13F7598C8 - 48 8B 4F 30  - mov rcx,[rdi+30]
+2A13F7598CC - 33 D2  - xor edx,edx
+2A13F7598CE - 49 BB D329AE42A1020000 - mov r11,000002A142AE29D3
+2A13F7598D8 - 41 FF D3  - call r11
+2A13F7598DB - 85 C0  - test eax,eax
+2A13F7598DD - 0F84 88010000 - je 2A13F759A6B
+2A13F7598E3 - 48 8B 4F 20  - mov rcx,[rdi+20]
+2A13F7598E7 - 33 D2  - xor edx,edx
+2A13F7598E9 - 48 8D 64 24 00  - lea rsp,[rsp+00]
+2A13F7598EE - 49 BB D329AE42A1020000 - mov r11,000002A142AE29D3
+2A13F7598F8 - 41 FF D3  - call r11
+2A13F7598FB - 85 C0  - test eax,eax
+2A13F7598FD - 0F84 35010000 - je 2A13F759A38
+2A13F759903 - 48 8B 47 30  - mov rax,[rdi+30]
+2A13F759907 - 48 8B C8  - mov rcx,rax
+2A13F75990A - 83 39 00 - cmp dword ptr [rcx],00
+2A13F75990D - 0FB6 80 AB010000  - movzx eax,byte ptr [rax+000001AB]
+2A13F759914 - 85 C0  - test eax,eax
+2A13F759916 - 74 18 - je 2A13F759930
+2A13F759918 - 48 8B CF  - mov rcx,rdi
+2A13F75991B - 66 66 90 - nop 3
+2A13F75991E - 49 BB B79A753FA1020000 - mov r11,000002A13F759AB7
+2A13F759928 - 41 FF D3  - call r11
+2A13F75992B - E9 3F010000 - jmp 2A13F759A6F
+2A13F759930 - 0FB6 47 38  - movzx eax,byte ptr [rdi+38]
+2A13F759934 - 85 C0  - test eax,eax
+2A13F759936 - 40 0F94 C0  - sete al
+2A13F75993A - 48 0FB6 C0  - movzx rax,al
+2A13F75993E - 23 C6  - and eax,esi
+2A13F759940 - 85 C0  - test eax,eax
+2A13F759942 - 74 27 - je 2A13F75996B
+2A13F759944 - 48 8B CF  - mov rcx,rdi
+2A13F759947 - 48 8D AD 00000000  - lea rbp,[rbp+00000000]
+2A13F75994E - 49 BB B79A753FA1020000 - mov r11,000002A13F759AB7
+2A13F759958 - 41 FF D3  - call r11
+2A13F75995B - 48 8B CF  - mov rcx,rdi
+2A13F75995E - 49 BB 9B9A753FA1020000 - mov r11,000002A13F759A9B
+2A13F759968 - 41 FF D3  - call r11
+2A13F75996B - 48 8B 47 20  - mov rax,[rdi+20]
+2A13F75996F - 48 8B C8  - mov rcx,rax
+2A13F759972 - 83 38 00 - cmp dword ptr [rax],00
+2A13F759975 - 90 - nop 
+2A13F759976 - 49 BB F23AA65BA1020000 - mov r11,000002A15BA63AF2
+2A13F759980 - 41 FF D3  - call r11
+2A13F759983 - 48 8B D5  - mov rdx,rbp
+2A13F759986 - 48 83 C2 B0 - add rdx,-50
+2A13F75998A - 48 8B C8  - mov rcx,rax
+2A13F75998D - 83 38 00 - cmp dword ptr [rax],00
+2A13F759990 - 48 8D 64 24 00  - lea rsp,[rsp+00]
+2A13F759995 - 90 - nop 
+2A13F759996 - 49 BB 78F4E05DA1020000 - mov r11,000002A15DE0F478
+OK
+
+=== Radio.TokenUpdateController:UpdateMe ===
+JIT address: 0x2A13F759AD0; size: 341
+2A13F759AD0 - 55 - push rbp
+2A13F759AD1 - 48 8B EC  - mov rbp,rsp
+2A13F759AD4 - 48 83 EC 30 - sub rsp,30
+2A13F759AD8 - 48 89 75 F8  - mov [rbp-08],rsi
+2A13F759ADC - 48 8B F1  - mov rsi,rcx
+2A13F759ADF - 48 8B 4E 28  - mov rcx,[rsi+28]
+2A13F759AE3 - 33 D2  - xor edx,edx
+2A13F759AE5 - 90 - nop 
+2A13F759AE6 - 49 BB D329AE42A1020000 - mov r11,000002A142AE29D3
+2A13F759AF0 - 41 FF D3  - call r11
+2A13F759AF3 - 85 C0  - test eax,eax
+2A13F759AF5 - 74 16 - je 2A13F759B0D
+2A13F759AF7 - 48 8B 46 28  - mov rax,[rsi+28]
+2A13F759AFB - 48 8B C8  - mov rcx,rax
+2A13F759AFE - 83 39 00 - cmp dword ptr [rcx],00
+2A13F759B01 - 0FB6 40 30  - movzx eax,byte ptr [rax+30]
+2A13F759B05 - 85 C0  - test eax,eax
+2A13F759B07 - 0F84 0E010000 - je 2A13F759C1B
+2A13F759B0D - F3 0F10 46 54  - movss xmm0,[rsi+54]
+2A13F759B12 - F3 0F5A C0  - cvtss2sd xmm0,xmm0
+2A13F759B16 - F3 0F10 4E 58  - movss xmm1,[rsi+58]
+2A13F759B1B - F3 0F5A C9  - cvtss2sd xmm1,xmm1
+2A13F759B1F - 66 0F2F C8  - comisd xmm1,xmm0
+2A13F759B23 - 0F86 F2000000 - jbe 2A13F759C1B
+2A13F759B29 - F3 0F10 46 54  - movss xmm0,[rsi+54]
+2A13F759B2E - F3 0F5A C0  - cvtss2sd xmm0,xmm0
+2A13F759B32 - F2 0F11 45 F0  - movsd [rbp-10],xmm0
+2A13F759B37 - 48 8D AD 00000000  - lea rbp,[rbp+00000000]
+2A13F759B3E - 49 BB 527A755DA1020000 - mov r11,000002A15D757A52
+2A13F759B48 - 41 FF D3  - call r11
+2A13F759B4B - F3 0F5A C8  - cvtss2sd xmm1,xmm0
+2A13F759B4F - F2 0F10 45 F0  - movsd xmm0,[rbp-10]
+2A13F759B54 - 48 B8 2C0ED0F6A0020000 - mov rax,000002A0F6D00E2C
+2A13F759B5E - 48 63 00  - movsxd  rax,dword ptr [rax]
+2A13F759B61 - F3 0F2A D0  - cvtsi2ss xmm2,eax
+2A13F759B65 - F3 0F5A D2  - cvtss2sd xmm2,xmm2
+2A13F759B69 - F2 0F59 CA  - mulsd xmm1,xmm2
+2A13F759B6D - F2 0F58 C1  - addsd xmm0,xmm1
+2A13F759B71 - 66 0F57 C9  - xorpd xmm1,xmm1
+2A13F759B75 - F3 0F10 56 58  - movss xmm2,[rsi+58]
+2A13F759B7A - F3 0F5A D2  - cvtss2sd xmm2,xmm2
+2A13F759B7E - F2 0F5A D2  - cvtsd2ss xmm2,xmm2
+2A13F759B82 - F2 0F5A C9  - cvtsd2ss xmm1,xmm1
+2A13F759B86 - F2 0F5A C0  - cvtsd2ss xmm0,xmm0
+2A13F759B8A - 48 8D 6D 00  - lea rbp,[rbp+00]
+2A13F759B8E - 49 BB E4F8AD42A1020000 - mov r11,000002A142ADF8E4
+2A13F759B98 - 41 FF D3  - call r11
+2A13F759B9B - F3 0F5A C0  - cvtss2sd xmm0,xmm0
+2A13F759B9F - F2 0F5A E8  - cvtsd2ss xmm5,xmm0
+2A13F759BA3 - F3 0F11 6E 54  - movss [rsi+54],xmm5
+2A13F759BA8 - 48 8B CE  - mov rcx,rsi
+2A13F759BAB - 66 66 90 - nop 3
+2A13F759BAE - 49 BB 439C753FA1020000 - mov r11,000002A13F759C43
+2A13F759BB8 - 41 FF D3  - call r11
+2A13F759BBB - F3 0F10 46 54  - movss xmm0,[rsi+54]
+2A13F759BC0 - F3 0F5A C0  - cvtss2sd xmm0,xmm0
+2A13F759BC4 - F3 0F10 4E 58  - movss xmm1,[rsi+58]
+2A13F759BC9 - F3 0F5A C9  - cvtss2sd xmm1,xmm1
+2A13F759BCD - 66 0F2F C8  - comisd xmm1,xmm0
+2A13F759BD1 - 0F85 44000000 - jne 2A13F759C1B
+2A13F759BD7 - 0F8A 3E000000 - jp 2A13F759C1B
+2A13F759BDD - 0F82 38000000 - jb 2A13F759C1B
+2A13F759BE3 - 48 8B 4E 20  - mov rcx,[rsi+20]
+2A13F759BE7 - 33 D2  - xor edx,edx
+2A13F759BE9 - 48 8D 64 24 00  - lea rsp,[rsp+00]
+2A13F759BEE - 49 BB D329AE42A1020000 - mov r11,000002A142AE29D3
+2A13F759BF8 - 41 FF D3  - call r11
+2A13F759BFB - 85 C0  - test eax,eax
+2A13F759BFD - 74 1C - je 2A13F759C1B
+2A13F759BFF - 48 8B 46 20  - mov rax,[rsi+20]
+2A13F759C03 - 48 8B C8  - mov rcx,rax
+2A13F759C06 - 83 38 00 - cmp dword ptr [rax],00
+2A13F759C09 - 48 8D 64 24 00  - lea rsp,[rsp+00]
+2A13F759C0E - 49 BB 359C753FA1020000 - mov r11,000002A13F759C35
+OK
+
+=== Radio.TokenUpdateController:LerpMe ===
+JIT address: 0x2A13F759C60; size: 293
+2A13F759C60 - 55 - push rbp
+2A13F759C61 - 48 8B EC  - mov rbp,rsp
+2A13F759C64 - 48 81 EC A0000000 - sub rsp,000000A0
+2A13F759C6B - 48 89 75 F8  - mov [rbp-08],rsi
+2A13F759C6F - 48 8B F1  - mov rsi,rcx
+2A13F759C72 - 48 8B 4E 20  - mov rcx,[rsi+20]
+2A13F759C76 - 33 D2  - xor edx,edx
+2A13F759C78 - 48 8D 64 24 00  - lea rsp,[rsp+00]
+2A13F759C7D - 90 - nop 
+2A13F759C7E - 49 BB D329AE42A1020000 - mov r11,000002A142AE29D3
+2A13F759C88 - 41 FF D3  - call r11
+2A13F759C8B - 85 C0  - test eax,eax
+2A13F759C8D - 0F84 E8000000 - je 2A13F759D7B
+2A13F759C93 - 48 8B 46 20  - mov rax,[rsi+20]
+2A13F759C97 - 48 8B C8  - mov rcx,rax
+2A13F759C9A - 83 38 00 - cmp dword ptr [rax],00
+2A13F759C9D - 90 - nop 
+2A13F759C9E - 49 BB F23AA65BA1020000 - mov r11,000002A15BA63AF2
+2A13F759CA8 - 41 FF D3  - call r11
+2A13F759CAB - 48 89 45 80  - mov [rbp-80],rax
+2A13F759CAF - 48 8D 46 3C  - lea rax,[rsi+3C]
+2A13F759CB3 - 48 63 08  - movsxd  rcx,dword ptr [rax]
+2A13F759CB6 - 89 4D 88  - mov [rbp-78],ecx
+2A13F759CB9 - 48 63 48 04  - movsxd  rcx,dword ptr [rax+04]
+2A13F759CBD - 89 4D 8C  - mov [rbp-74],ecx
+2A13F759CC0 - 48 63 40 08  - movsxd  rax,dword ptr [rax+08]
+2A13F759CC4 - 89 45 90  - mov [rbp-70],eax
+2A13F759CC7 - 48 8D 46 48  - lea rax,[rsi+48]
+2A13F759CCB - 48 63 08  - movsxd  rcx,dword ptr [rax]
+2A13F759CCE - 89 4D 98  - mov [rbp-68],ecx
+2A13F759CD1 - 48 63 48 04  - movsxd  rcx,dword ptr [rax+04]
+2A13F759CD5 - 89 4D 9C  - mov [rbp-64],ecx
+2A13F759CD8 - 48 63 40 08  - movsxd  rax,dword ptr [rax+08]
+2A13F759CDC - 89 45 A0  - mov [rbp-60],eax
+2A13F759CDF - F3 0F10 46 54  - movss xmm0,[rsi+54]
+2A13F759CE4 - F3 0F5A C0  - cvtss2sd xmm0,xmm0
+2A13F759CE8 - F3 0F10 4E 58  - movss xmm1,[rsi+58]
+2A13F759CED - F3 0F5A C9  - cvtss2sd xmm1,xmm1
+2A13F759CF1 - F2 0F5E C1  - divsd xmm0,xmm1
+2A13F759CF5 - 48 8B CD  - mov rcx,rbp
+2A13F759CF8 - 48 83 C1 A8 - add rcx,-58
+2A13F759CFC - F2 0F10 D8  - movsd xmm3,xmm0
+2A13F759D00 - F2 0F5A DB  - cvtsd2ss xmm3,xmm3
+2A13F759D04 - 48 8B C5  - mov rax,rbp
+2A13F759D07 - 48 83 C0 B8 - add rax,-48
+2A13F759D0B - 48 8B 55 98  - mov rdx,[rbp-68]
+2A13F759D0F - 48 89 55 B8  - mov [rbp-48],rdx
+2A13F759D13 - 48 63 55 A0  - movsxd  rdx,dword ptr [rbp-60]
+2A13F759D17 - 89 55 C0  - mov [rbp-40],edx
+2A13F759D1A - 4C 8D 00  - lea r8,[rax]
+2A13F759D1D - 48 8B C5  - mov rax,rbp
+2A13F759D20 - 48 83 C0 C8 - add rax,-38
+2A13F759D24 - 48 8B 55 88  - mov rdx,[rbp-78]
+2A13F759D28 - 48 89 55 C8  - mov [rbp-38],rdx
+2A13F759D2C - 48 63 55 90  - movsxd  rdx,dword ptr [rbp-70]
+2A13F759D30 - 89 55 D0  - mov [rbp-30],edx
+2A13F759D33 - 48 8D 10  - lea rdx,[rax]
+2A13F759D36 - 49 BB F4DCC05DA1020000 - mov r11,000002A15DC0DCF4
+2A13F759D40 - 41 FF D3  - call r11
+2A13F759D43 - 48 8B 45 80  - mov rax,[rbp-80]
+2A13F759D47 - 48 8B C8  - mov rcx,rax
+2A13F759D4A - 48 8B D5  - mov rdx,rbp
+2A13F759D4D - 48 83 C2 D8 - add rdx,-28
+2A13F759D51 - 4C 8B 45 A8  - mov r8,[rbp-58]
+2A13F759D55 - 4C 89 45 D8  - mov [rbp-28],r8
+2A13F759D59 - 4C 63 45 B0  - movsxd  r8,dword ptr [rbp-50]
+2A13F759D5D - 44 89 45 E0  - mov [rbp-20],r8d
+2A13F759D61 - 48 8D 12  - lea rdx,[rdx]
+2A13F759D64 - 83 38 00 - cmp dword ptr [rax],00
+2A13F759D67 - 48 8D AD 00000000  - lea rbp,[rbp+00000000]
+2A13F759D6E - 49 BB 72DBBB5DA1020000 - mov r11,000002A15DBBDB72
+2A13F759D78 - 41 FF D3  - call r11
+2A13F759D7B - 48 8B 75 F8  - mov rsi,[rbp-08]
+2A13F759D7F - 48 8D 65 00  - lea rsp,[rbp+00]
+2A13F759D83 - 5D - pop rbp
+2A13F759D84 - C3 - ret 
+OK
+
+=== Lemrh.CheatEntity:SwitchCheat ===
+JIT address: 0x2A13F759DA0; size: 180
+2A13F759DA0 - 55 - push rbp
+2A13F759DA1 - 48 8B EC  - mov rbp,rsp
+2A13F759DA4 - 48 83 EC 30 - sub rsp,30
+2A13F759DA8 - 48 89 75 F8  - mov [rbp-08],rsi
+2A13F759DAC - 48 8B F1  - mov rsi,rcx
+2A13F759DAF - 48 8B 4E 18  - mov rcx,[rsi+18]
+2A13F759DB3 - 33 D2  - xor edx,edx
+2A13F759DB5 - 90 - nop 
+2A13F759DB6 - 49 BB D329AE42A1020000 - mov r11,000002A142AE29D3
+2A13F759DC0 - 41 FF D3  - call r11
+2A13F759DC3 - 85 C0  - test eax,eax
+2A13F759DC5 - 0F84 60000000 - je 2A13F759E2B
+2A13F759DCB - 48 8B 46 18  - mov rax,[rsi+18]
+2A13F759DCF - 48 8B C8  - mov rcx,rax
+2A13F759DD2 - 48 8B D1  - mov rdx,rcx
+2A13F759DD5 - 83 3A 00 - cmp dword ptr [rdx],00
+2A13F759DD8 - 0FB6 49 30  - movzx ecx,byte ptr [rcx+30]
+2A13F759DDC - 85 C9  - test ecx,ecx
+2A13F759DDE - 40 0F94 C2  - sete dl
+2A13F759DE2 - 48 0FB6 D2  - movzx rdx,dl
+2A13F759DE6 - 48 8B C8  - mov rcx,rax
+2A13F759DE9 - 83 38 00 - cmp dword ptr [rax],00
+2A13F759DEC - 66 90 - nop 2
+2A13F759DEE - 49 BB 46E5DA5CA1020000 - mov r11,000002A15CDAE546
+2A13F759DF8 - 41 FF D3  - call r11
+2A13F759DFB - 0FB6 46 35  - movzx eax,byte ptr [rsi+35]
+2A13F759DFF - 85 C0  - test eax,eax
+2A13F759E01 - 40 0F94 C0  - sete al
+2A13F759E05 - 48 0FB6 C0  - movzx rax,al
+2A13F759E09 - 40 88 46 35  - mov [rsi+35],al
+2A13F759E0D - 48 8B 46 28  - mov rax,[rsi+28]
+2A13F759E11 - 48 8B C8  - mov rcx,rax
+2A13F759E14 - 83 38 00 - cmp dword ptr [rax],00
+2A13F759E17 - 48 8D AD 00000000  - lea rbp,[rbp+00000000]
+2A13F759E1E - 49 BB 649E753FA1020000 - mov r11,000002A13F759E64
+2A13F759E28 - 41 FF D3  - call r11
+2A13F759E2B - 48 8B 46 20  - mov rax,[rsi+20]
+2A13F759E2F - 48 8B C8  - mov rcx,rax
+2A13F759E32 - 83 38 00 - cmp dword ptr [rax],00
+2A13F759E35 - 90 - nop 
+2A13F759E36 - 49 BB 38E5DA5CA1020000 - mov r11,000002A15CDAE538
+2A13F759E40 - 41 FF D3  - call r11
+2A13F759E43 - C7 46 30 00000000 - mov [rsi+30],00000000
+2A13F759E4A - 48 8B 75 F8  - mov rsi,[rbp-08]
+2A13F759E4E - 48 8D 65 00  - lea rsp,[rbp+00]
+2A13F759E52 - 5D - pop rbp
+2A13F759E53 - C3 - ret 
+OK
+
+=== Lemrh.CheatController:CheatSwitched ===
+JIT address: 0x2A13F759E80; size: 219
+2A13F759E80 - 55 - push rbp
+2A13F759E81 - 48 8B EC  - mov rbp,rsp
+2A13F759E84 - 48 83 EC 40 - sub rsp,40
+2A13F759E88 - 48 89 75 E0  - mov [rbp-20],rsi
+2A13F759E8C - 48 89 7D E8  - mov [rbp-18],rdi
+2A13F759E90 - 4C 89 75 F0  - mov [rbp-10],r14
+2A13F759E94 - 4C 89 7D F8  - mov [rbp-08],r15
+2A13F759E98 - 48 8B F1  - mov rsi,rcx
+2A13F759E9B - 33 C0  - xor eax,eax
+2A13F759E9D - 48 0FB6 F8  - movzx rdi,al
+2A13F759EA1 - 4C 8B 7E 18  - mov r15,[rsi+18]
+2A13F759EA5 - 45 33 F6  - xor r14d,r14d
+2A13F759EA8 - EB 37 - jmp 2A13F759EE1
+2A13F759EAA - 48 8D 64 24 00  - lea rsp,[rsp+00]
+2A13F759EAF - 90 - nop 
+2A13F759EB0 - 49 63 C6  - movsxd  rax,r14d
+2A13F759EB3 - 41 39 47 18  - cmp [r15+18],eax
+2A13F759EB7 - 0F86 84000000 - jbe 2A13F759F41
+2A13F759EBD - 49 8D 44 C7 20  - lea rax,[r15+rax*8+20]
+2A13F759EC2 - 48 8B 00  - mov rax,[rax]
+2A13F759EC5 - 48 8B C8  - mov rcx,rax
+2A13F759EC8 - 83 39 00 - cmp dword ptr [rcx],00
+2A13F759ECB - 0FB6 40 35  - movzx eax,byte ptr [rax+35]
+2A13F759ECF - 85 C0  - test eax,eax
+2A13F759ED1 - 74 0B - je 2A13F759EDE
+2A13F759ED3 - B8 01000000 - mov eax,00000001
+2A13F759ED8 - 48 0FB6 F8  - movzx rdi,al
+2A13F759EDC - EB 0C - jmp 2A13F759EEA
+2A13F759EDE - 41 FF C6  - inc r14d
+2A13F759EE1 - 49 63 47 18  - movsxd  rax,dword ptr [r15+18]
+2A13F759EE5 - 44 3B F0  - cmp r14d,eax
+2A13F759EE8 - 7C C6 - jl 2A13F759EB0
+2A13F759EEA - 85 FF  - test edi,edi
+2A13F759EEC - 74 1F - je 2A13F759F0D
+2A13F759EEE - 48 8B 46 20  - mov rax,[rsi+20]
+2A13F759EF2 - 48 8B C8  - mov rcx,rax
+2A13F759EF5 - 83 38 00 - cmp dword ptr [rax],00
+2A13F759EF8 - 48 8D 64 24 00  - lea rsp,[rsp+00]
+2A13F759EFD - 90 - nop 
+2A13F759EFE - 49 BB 38E5DA5CA1020000 - mov r11,000002A15CDAE538
+2A13F759F08 - 41 FF D3  - call r11
+2A13F759F0B - EB 1E - jmp 2A13F759F2B
+2A13F759F0D - 48 8B 46 28  - mov rax,[rsi+28]
+2A13F759F11 - 48 8B C8  - mov rcx,rax
+2A13F759F14 - 83 38 00 - cmp dword ptr [rax],00
+2A13F759F17 - 48 8D AD 00000000  - lea rbp,[rbp+00000000]
+2A13F759F1E - 49 BB 38E5DA5CA1020000 - mov r11,000002A15CDAE538
+2A13F759F28 - 41 FF D3  - call r11
+2A13F759F2B - 48 8B 75 E0  - mov rsi,[rbp-20]
+2A13F759F2F - 48 8B 7D E8  - mov rdi,[rbp-18]
+2A13F759F33 - 4C 8B 75 F0  - mov r14,[rbp-10]
+2A13F759F37 - 4C 8B 7D F8  - mov r15,[rbp-08]
+2A13F759F3B - 48 8D 65 00  - lea rsp,[rbp+00]
+2A13F759F3F - 5D - pop rbp
+2A13F759F40 - C3 - ret 
+2A13F759F41 - BA A4000000 - mov edx,000000A4
+2A13F759F46 - B9 86010000 - mov ecx,00000186
+2A13F759F4B - 66 66 90 - nop 3
+2A13F759F4E - 49 BB D02095F1A0020000 - mov r11,000002A0F19520D0
+2A13F759F58 - 41 FF D3  - call r11
+OK
+
+=== Radio.UnitController:AddSupplies ===
+JIT address: 0x2A13F759F70; size: 777
+2A13F759F70 - 55 - push rbp
+2A13F759F71 - 48 8B EC  - mov rbp,rsp
+2A13F759F74 - 48 83 EC 50 - sub rsp,50
+2A13F759F78 - 48 89 75 F0  - mov [rbp-10],rsi
+2A13F759F7C - 48 89 7D F8  - mov [rbp-08],rdi
+2A13F759F80 - 48 8B F1  - mov rsi,rcx
+2A13F759F83 - F3 0F11 4D E0  - movss [rbp-20],xmm1
+2A13F759F88 - 66 0F57 C0  - xorpd xmm0,xmm0
+2A13F759F8C - F2 0F5A E8  - cvtsd2ss xmm5,xmm0
+2A13F759F90 - F3 0F11 6D EC  - movss [rbp-14],xmm5
+2A13F759F95 - 0FB6 86 10010000  - movzx eax,byte ptr [rsi+00000110]
+2A13F759F9C - 85 C0  - test eax,eax
+2A13F759F9E - 0F84 4F000000 - je 2A13F759FF3
+2A13F759FA4 - 48 8B CD  - mov rcx,rbp
+2A13F759FA7 - 48 83 C1 E0 - add rcx,-20
+2A13F759FAB - 66 66 90 - nop 3
+2A13F759FAE - 49 BB 462A6D5DA1020000 - mov r11,000002A15D6D2A46
+2A13F759FB8 - 41 FF D3  - call r11
+2A13F759FBB - 48 8B D0  - mov rdx,rax
+2A13F759FBE - 48 B9 1042C55CA1020000 - mov rcx,000002A15CC54210
+2A13F759FC8 - 49 B8 20CFF85CA1020000 - mov r8,000002A15CF8CF20
+2A13F759FD2 - 48 8D 6D 00  - lea rbp,[rbp+00]
+2A13F759FD6 - 49 BB 4885A65BA1020000 - mov r11,000002A15BA68548
+2A13F759FE0 - 41 FF D3  - call r11
+2A13F759FE3 - 48 8B C8  - mov rcx,rax
+2A13F759FE6 - 49 BB E18FAE42A1020000 - mov r11,000002A142AE8FE1
+2A13F759FF0 - 41 FF D3  - call r11
+2A13F759FF3 - F3 0F10 45 E0  - movss xmm0,[rbp-20]
+2A13F759FF8 - F3 0F5A C0  - cvtss2sd xmm0,xmm0
+2A13F759FFC - 66 0F57 C9  - xorpd xmm1,xmm1
+2A13F75A000 - 66 0F2F C8  - comisd xmm1,xmm0
+2A13F75A004 - 76 19 - jna 2A13F75A01F
+2A13F75A006 - 48 8B 46 18  - mov rax,[rsi+18]
+2A13F75A00A - 48 8B C8  - mov rcx,rax
+2A13F75A00D - 83 39 00 - cmp dword ptr [rcx],00
+2A13F75A010 - 48 8B 40 18  - mov rax,[rax+18]
+2A13F75A014 - 48 63 80 A8010000  - movsxd  rax,dword ptr [rax+000001A8]
+2A13F75A01B - 85 C0  - test eax,eax
+2A13F75A01D - 74 04 - je 2A13F75A023
+2A13F75A01F - 33 FF  - xor edi,edi
+2A13F75A021 - EB 1F - jmp 2A13F75A042
+2A13F75A023 - 48 8B 46 18  - mov rax,[rsi+18]
+2A13F75A027 - 48 8B C8  - mov rcx,rax
+2A13F75A02A - 83 39 00 - cmp dword ptr [rcx],00
+2A13F75A02D - 48 8B 40 18  - mov rax,[rax+18]
+2A13F75A031 - 48 8B 80 80000000  - mov rax,[rax+00000080]
+2A13F75A038 - 48 8B C8  - mov rcx,rax
+2A13F75A03B - 83 39 00 - cmp dword ptr [rcx],00
+2A13F75A03E - 0FB6 78 30  - movzx edi,byte ptr [rax+30]
+2A13F75A042 - 85 FF  - test edi,edi
+2A13F75A044 - 0F85 21020000 - jne 2A13F75A26B
+2A13F75A04A - 0FB6 86 10010000  - movzx eax,byte ptr [rsi+00000110]
+2A13F75A051 - 85 C0  - test eax,eax
+2A13F75A053 - 74 1E - je 2A13F75A073
+2A13F75A055 - 48 B9 40894D5DA1020000 - mov rcx,000002A15D4D8940
+2A13F75A05F - 48 8D AD 00000000  - lea rbp,[rbp+00000000]
+2A13F75A066 - 49 BB E18FAE42A1020000 - mov r11,000002A142AE8FE1
+2A13F75A070 - 41 FF D3  - call r11
+2A13F75A073 - 48 8B 46 18  - mov rax,[rsi+18]
+2A13F75A077 - 48 8B C8  - mov rcx,rax
+2A13F75A07A - 83 39 00 - cmp dword ptr [rcx],00
+2A13F75A07D - 48 8B 40 18  - mov rax,[rax+18]
+2A13F75A081 - 48 8B 80 D0000000  - mov rax,[rax+000000D0]
+2A13F75A088 - 48 8B C8  - mov rcx,rax
+2A13F75A08B - 83 39 00 - cmp dword ptr [rcx],00
+2A13F75A08E - 0FB6 40 30  - movzx eax,byte ptr [rax+30]
+2A13F75A092 - 85 C0  - test eax,eax
+2A13F75A094 - 0F84 C6000000 - je 2A13F75A160
+2A13F75A09A - F3 0F10 86 80010000  - movss xmm0,[rsi+00000180]
+2A13F75A0A2 - F3 0F5A C0  - cvtss2sd xmm0,xmm0
+2A13F75A0A6 - F3 0F10 4D E0  - movss xmm1,[rbp-20]
+2A13F75A0AB - F3 0F5A C9  - cvtss2sd xmm1,xmm1
+2A13F75A0AF - 48 8B 46 18  - mov rax,[rsi+18]
+OK
+
+=== Radio.StaminaUnitController:ConsumeStamina ===
+JIT address: 0x2A13F75A2B0; size: 1580
+2A13F75A2B0 - 55 - push rbp
+2A13F75A2B1 - 48 8B EC  - mov rbp,rsp
+2A13F75A2B4 - 48 81 EC 30010000 - sub rsp,00000130
+2A13F75A2BB - 48 89 75 F0  - mov [rbp-10],rsi
+2A13F75A2BF - 48 89 7D F8  - mov [rbp-08],rdi
+2A13F75A2C3 - 48 8B F1  - mov rsi,rcx
+2A13F75A2C6 - C7 85 20FFFFFF 00000000 - mov [rbp-000000E0],00000000
+2A13F75A2D0 - C7 85 24FFFFFF 00000000 - mov [rbp-000000DC],00000000
+2A13F75A2DA - C7 85 28FFFFFF 00000000 - mov [rbp-000000D8],00000000
+2A13F75A2E4 - 48 8B 4E 20  - mov rcx,[rsi+20]
+2A13F75A2E8 - 33 D2  - xor edx,edx
+2A13F75A2EA - 48 8D 6D 00  - lea rbp,[rbp+00]
+2A13F75A2EE - 49 BB 690EAE42A1020000 - mov r11,000002A142AE0E69
+2A13F75A2F8 - 41 FF D3  - call r11
+2A13F75A2FB - 85 C0  - test eax,eax
+2A13F75A2FD - 0F85 CB050000 - jne 2A13F75A8CE
+2A13F75A303 - 48 8B 46 20  - mov rax,[rsi+20]
+2A13F75A307 - 48 8B 40 18  - mov rax,[rax+18]
+2A13F75A30B - 48 8B C8  - mov rcx,rax
+2A13F75A30E - 83 39 00 - cmp dword ptr [rcx],00
+2A13F75A311 - 48 8B 40 18  - mov rax,[rax+18]
+2A13F75A315 - 48 8B 80 88000000  - mov rax,[rax+00000088]
+2A13F75A31C - 48 8B C8  - mov rcx,rax
+2A13F75A31F - 83 39 00 - cmp dword ptr [rcx],00
+2A13F75A322 - 0FB6 40 30  - movzx eax,byte ptr [rax+30]
+2A13F75A326 - 85 C0  - test eax,eax
+2A13F75A328 - 0F85 A0050000 - jne 2A13F75A8CE
+2A13F75A32E - 48 8B 46 20  - mov rax,[rsi+20]
+2A13F75A332 - 48 8B C8  - mov rcx,rax
+2A13F75A335 - 83 39 00 - cmp dword ptr [rcx],00
+2A13F75A338 - 48 63 80 B4010000  - movsxd  rax,dword ptr [rax+000001B4]
+2A13F75A33F - 83 F8 01 - cmp eax,01
+2A13F75A342 - 0F85 00050000 - jne 2A13F75A848
+2A13F75A348 - 48 8B 46 20  - mov rax,[rsi+20]
+2A13F75A34C - 48 8B 40 18  - mov rax,[rax+18]
+2A13F75A350 - 48 8B C8  - mov rcx,rax
+2A13F75A353 - 83 39 00 - cmp dword ptr [rcx],00
+2A13F75A356 - 48 8B 40 18  - mov rax,[rax+18]
+2A13F75A35A - 48 8B 80 D8000000  - mov rax,[rax+000000D8]
+2A13F75A361 - 48 8B C8  - mov rcx,rax
+2A13F75A364 - 83 39 00 - cmp dword ptr [rcx],00
+2A13F75A367 - 0FB6 40 30  - movzx eax,byte ptr [rax+30]
+2A13F75A36B - 85 C0  - test eax,eax
+2A13F75A36D - 0F84 04020000 - je 2A13F75A577
+2A13F75A373 - 48 8D 46 2C  - lea rax,[rsi+2C]
+2A13F75A377 - 48 63 08  - movsxd  rcx,dword ptr [rax]
+2A13F75A37A - 89 8D 30FFFFFF  - mov [rbp-000000D0],ecx
+2A13F75A380 - 48 63 48 04  - movsxd  rcx,dword ptr [rax+04]
+2A13F75A384 - 89 8D 34FFFFFF  - mov [rbp-000000CC],ecx
+2A13F75A38A - 48 63 40 08  - movsxd  rax,dword ptr [rax+08]
+2A13F75A38E - 89 85 38FFFFFF  - mov [rbp-000000C8],eax
+2A13F75A394 - 48 8B CE  - mov rcx,rsi
+2A13F75A397 - 48 8D AD 00000000  - lea rbp,[rbp+00000000]
+2A13F75A39E - 49 BB F23AA65BA1020000 - mov r11,000002A15BA63AF2
+2A13F75A3A8 - 41 FF D3  - call r11
+2A13F75A3AB - 48 8B D5  - mov rdx,rbp
+2A13F75A3AE - 48 81 C2 40FFFFFF - add rdx,FFFFFFFFFFFFFF40
+2A13F75A3B5 - 48 8B C8  - mov rcx,rax
+2A13F75A3B8 - 83 38 00 - cmp dword ptr [rax],00
+2A13F75A3BB - 66 66 90 - nop 3
+2A13F75A3BE - 49 BB 78F4E05DA1020000 - mov r11,000002A15DE0F478
+2A13F75A3C8 - 41 FF D3  - call r11
+2A13F75A3CB - 48 8B CD  - mov rcx,rbp
+2A13F75A3CE - 48 81 C1 20FFFFFF - add rcx,FFFFFFFFFFFFFF20
+2A13F75A3D5 - 48 8B C5  - mov rax,rbp
+2A13F75A3D8 - 48 05 50FFFFFF - add rax,FFFFFFFFFFFFFF50
+2A13F75A3DE - 48 8B 95 40FFFFFF  - mov rdx,[rbp-000000C0]
+2A13F75A3E5 - 48 89 95 50FFFFFF  - mov [rbp-000000B0],rdx
+2A13F75A3EC - 48 63 95 48FFFFFF  - movsxd  rdx,dword ptr [rbp-000000B8]
+OK
+
+=== Radio.FuelUnitController:ConsumeFuel ===
+JIT address: 0x2A13F75A940; size: 439
+2A13F75A940 - 55 - push rbp
+2A13F75A941 - 48 8B EC  - mov rbp,rsp
+2A13F75A944 - 48 83 EC 50 - sub rsp,50
+2A13F75A948 - 48 89 75 F8  - mov [rbp-08],rsi
+2A13F75A94C - 48 8B F1  - mov rsi,rcx
+2A13F75A94F - 48 8B 46 20  - mov rax,[rsi+20]
+2A13F75A953 - 48 8B 40 18  - mov rax,[rax+18]
+2A13F75A957 - 48 8B C8  - mov rcx,rax
+2A13F75A95A - 83 39 00 - cmp dword ptr [rcx],00
+2A13F75A95D - 48 8B 40 18  - mov rax,[rax+18]
+2A13F75A961 - 48 8B 80 88000000  - mov rax,[rax+00000088]
+2A13F75A968 - 48 8B C8  - mov rcx,rax
+2A13F75A96B - 83 39 00 - cmp dword ptr [rcx],00
+2A13F75A96E - 0FB6 40 30  - movzx eax,byte ptr [rax+30]
+2A13F75A972 - 85 C0  - test eax,eax
+2A13F75A974 - 0F85 73010000 - jne 2A13F75AAED
+2A13F75A97A - 0FB6 46 3C  - movzx eax,byte ptr [rsi+3C]
+2A13F75A97E - 85 C0  - test eax,eax
+2A13F75A980 - 0F84 67010000 - je 2A13F75AAED
+2A13F75A986 - F3 0F10 46 38  - movss xmm0,[rsi+38]
+2A13F75A98B - F3 0F5A C0  - cvtss2sd xmm0,xmm0
+2A13F75A98F - F2 0F11 45 E0  - movsd [rbp-20],xmm0
+2A13F75A994 - 48 8B 46 18  - mov rax,[rsi+18]
+2A13F75A998 - F3 0F10 40 18  - movss xmm0,[rax+18]
+2A13F75A99D - F3 0F5A C0  - cvtss2sd xmm0,xmm0
+2A13F75A9A1 - F2 0F11 45 D0  - movsd [rbp-30],xmm0
+2A13F75A9A6 - 48 8B 46 20  - mov rax,[rsi+20]
+2A13F75A9AA - 48 8B 40 18  - mov rax,[rax+18]
+2A13F75A9AE - 48 8B C8  - mov rcx,rax
+2A13F75A9B1 - 83 38 00 - cmp dword ptr [rax],00
+2A13F75A9B4 - 66 90 - nop 2
+2A13F75A9B6 - 49 BB 31AB753FA1020000 - mov r11,000002A13F75AB31
+2A13F75A9C0 - 41 FF D3  - call r11
+2A13F75A9C3 - F3 0F5A C8  - cvtss2sd xmm1,xmm0
+2A13F75A9C7 - F2 0F10 45 D0  - movsd xmm0,[rbp-30]
+2A13F75A9CC - F2 0F5E C1  - divsd xmm0,xmm1
+2A13F75A9D0 - F2 0F11 45 D8  - movsd [rbp-28],xmm0
+2A13F75A9D5 - 90 - nop 
+2A13F75A9D6 - 49 BB 527A755DA1020000 - mov r11,000002A15D757A52
+2A13F75A9E0 - 41 FF D3  - call r11
+2A13F75A9E3 - F3 0F5A D0  - cvtss2sd xmm2,xmm0
+2A13F75A9E7 - F2 0F10 45 E0  - movsd xmm0,[rbp-20]
+2A13F75A9EC - F2 0F10 4D D8  - movsd xmm1,[rbp-28]
+2A13F75A9F1 - F2 0F59 CA  - mulsd xmm1,xmm2
+2A13F75A9F5 - 48 B8 2C0ED0F6A0020000 - mov rax,000002A0F6D00E2C
+2A13F75A9FF - 48 63 00  - movsxd  rax,dword ptr [rax]
+2A13F75AA02 - F3 0F2A D0  - cvtsi2ss xmm2,eax
+2A13F75AA06 - F3 0F5A D2  - cvtss2sd xmm2,xmm2
+2A13F75AA0A - F2 0F59 CA  - mulsd xmm1,xmm2
+2A13F75AA0E - F2 0F5C C1  - subsd xmm0,xmm1
+2A13F75AA12 - F2 0F11 45 F0  - movsd [rbp-10],xmm0
+2A13F75AA17 - 66 0F57 C0  - xorpd xmm0,xmm0
+2A13F75AA1B - F2 0F11 45 E8  - movsd [rbp-18],xmm0
+2A13F75AA20 - 48 8B 46 20  - mov rax,[rsi+20]
+2A13F75AA24 - 48 8B 40 18  - mov rax,[rax+18]
+2A13F75AA28 - 48 8B C8  - mov rcx,rax
+2A13F75AA2B - 83 38 00 - cmp dword ptr [rax],00
+2A13F75AA2E - 49 BB 23AB753FA1020000 - mov r11,000002A13F75AB23
+2A13F75AA38 - 41 FF D3  - call r11
+2A13F75AA3B - F3 0F5A D0  - cvtss2sd xmm2,xmm0
+2A13F75AA3F - F2 0F10 45 F0  - movsd xmm0,[rbp-10]
+2A13F75AA44 - F2 0F10 4D E8  - movsd xmm1,[rbp-18]
+2A13F75AA49 - F2 0F5A D2  - cvtsd2ss xmm2,xmm2
+2A13F75AA4D - F2 0F5A C9  - cvtsd2ss xmm1,xmm1
+2A13F75AA51 - F2 0F5A C0  - cvtsd2ss xmm0,xmm0
+2A13F75AA55 - 90 - nop 
+2A13F75AA56 - 49 BB E4F8AD42A1020000 - mov r11,000002A142ADF8E4
+2A13F75AA60 - 41 FF D3  - call r11
+2A13F75AA63 - F3 0F5A C0  - cvtss2sd xmm0,xmm0
+2A13F75AA67 - F2 0F5A E8  - cvtsd2ss xmm5,xmm0
+2A13F75AA6B - F3 0F11 6E 40  - movss [rsi+40],xmm5
+2A13F75AA70 - F3 0F10 46 38  - movss xmm0,[rsi+38]
+2A13F75AA75 - F3 0F5A C0  - cvtss2sd xmm0,xmm0
+2A13F75AA79 - F3 0F10 4E 40  - movss xmm1,[rsi+40]
+2A13F75AA7E - F3 0F5A C9  - cvtss2sd xmm1,xmm1
+OK
+
+=== Radio.UnitController:DamageTaken ===
+JIT address: 0x2A13F75AB40; size: 889
+2A13F75AB40 - 55 - push rbp
+2A13F75AB41 - 48 8B EC  - mov rbp,rsp
+2A13F75AB44 - 48 83 EC 50 - sub rsp,50
+2A13F75AB48 - 48 89 75 F0  - mov [rbp-10],rsi
+2A13F75AB4C - 48 89 7D F8  - mov [rbp-08],rdi
+2A13F75AB50 - 48 8B F9  - mov rdi,rcx
+2A13F75AB53 - 48 8B F2  - mov rsi,rdx
+2A13F75AB56 - F3 0F11 55 E0  - movss [rbp-20],xmm2
+2A13F75AB5B - F3 0F11 5D D8  - movss [rbp-28],xmm3
+2A13F75AB60 - 48 8B 47 60  - mov rax,[rdi+60]
+2A13F75AB64 - 48 8B C8  - mov rcx,rax
+2A13F75AB67 - 48 8B D6  - mov rdx,rsi
+2A13F75AB6A - 83 38 00 - cmp dword ptr [rax],00
+2A13F75AB6D - 90 - nop 
+2A13F75AB6E - 49 BB 39AF753FA1020000 - mov r11,000002A13F75AF39
+2A13F75AB78 - 41 FF D3  - call r11
+2A13F75AB7B - 85 C0  - test eax,eax
+2A13F75AB7D - 0F85 40010000 - jne 2A13F75ACC3
+2A13F75AB83 - 48 8B 47 60  - mov rax,[rdi+60]
+2A13F75AB87 - 48 8B C8  - mov rcx,rax
+2A13F75AB8A - 48 8B D6  - mov rdx,rsi
+2A13F75AB8D - 83 38 00 - cmp dword ptr [rax],00
+2A13F75AB90 - 48 8D 64 24 00  - lea rsp,[rsp+00]
+2A13F75AB95 - 90 - nop 
+2A13F75AB96 - 49 BB 2BAF753FA1020000 - mov r11,000002A13F75AF2B
+2A13F75ABA0 - 41 FF D3  - call r11
+2A13F75ABA3 - 48 8B CF  - mov rcx,rdi
+2A13F75ABA6 - 48 8B D6  - mov rdx,rsi
+2A13F75ABA9 - 48 8D 64 24 00  - lea rsp,[rsp+00]
+2A13F75ABAE - 49 BB 1DAF753FA1020000 - mov r11,000002A13F75AF1D
+2A13F75ABB8 - 41 FF D3  - call r11
+2A13F75ABBB - 48 8B 4F 78  - mov rcx,[rdi+78]
+2A13F75ABBF - 33 D2  - xor edx,edx
+2A13F75ABC1 - 48 8D 64 24 00  - lea rsp,[rsp+00]
+2A13F75ABC6 - 49 BB D329AE42A1020000 - mov r11,000002A142AE29D3
+2A13F75ABD0 - 41 FF D3  - call r11
+2A13F75ABD3 - 85 C0  - test eax,eax
+2A13F75ABD5 - 74 1C - je 2A13F75ABF3
+2A13F75ABD7 - 48 8B 47 78  - mov rax,[rdi+78]
+2A13F75ABDB - 48 8B C8  - mov rcx,rax
+2A13F75ABDE - 48 8B D6  - mov rdx,rsi
+2A13F75ABE1 - 83 38 00 - cmp dword ptr [rax],00
+2A13F75ABE4 - 66 90 - nop 2
+2A13F75ABE6 - 49 BB 0FAF753FA1020000 - mov r11,000002A13F75AF0F
+2A13F75ABF0 - 41 FF D3  - call r11
+2A13F75ABF3 - 48 8B 8F C0000000  - mov rcx,[rdi+000000C0]
+2A13F75ABFA - 33 D2  - xor edx,edx
+2A13F75ABFC - 66 90 - nop 2
+2A13F75ABFE - 49 BB D329AE42A1020000 - mov r11,000002A142AE29D3
+2A13F75AC08 - 41 FF D3  - call r11
+2A13F75AC0B - 85 C0  - test eax,eax
+2A13F75AC0D - 0F84 70000000 - je 2A13F75AC83
+2A13F75AC13 - 48 8B 46 18  - mov rax,[rsi+18]
+2A13F75AC17 - 48 8B C8  - mov rcx,rax
+2A13F75AC1A - 83 39 00 - cmp dword ptr [rcx],00
+2A13F75AC1D - 48 8B 40 18  - mov rax,[rax+18]
+2A13F75AC21 - 48 63 80 A8010000  - movsxd  rax,dword ptr [rax+000001A8]
+2A13F75AC28 - 48 8B 4F 18  - mov rcx,[rdi+18]
+2A13F75AC2C - 48 8B D1  - mov rdx,rcx
+2A13F75AC2F - 83 3A 00 - cmp dword ptr [rdx],00
+2A13F75AC32 - 48 8B 49 18  - mov rcx,[rcx+18]
+2A13F75AC36 - 48 63 89 A8010000  - movsxd  rcx,dword ptr [rcx+000001A8]
+2A13F75AC3D - 3B C1  - cmp eax,ecx
+2A13F75AC3F - 75 22 - jne 2A13F75AC63
+2A13F75AC41 - 48 8B 87 C0000000  - mov rax,[rdi+000000C0]
+2A13F75AC48 - 48 8B 40 20  - mov rax,[rax+20]
+2A13F75AC4C - 48 8B C8  - mov rcx,rax
+2A13F75AC4F - 83 38 00 - cmp dword ptr [rax],00
+2A13F75AC52 - 48 8D 6D 00  - lea rbp,[rbp+00]
+2A13F75AC56 - 49 BB 38E5DA5CA1020000 - mov r11,000002A15CDAE538
+2A13F75AC60 - 41 FF D3  - call r11
+2A13F75AC63 - 48 8B 87 C0000000  - mov rax,[rdi+000000C0]
+2A13F75AC6A - 48 8B C8  - mov rcx,rax
+2A13F75AC6D - 48 8B D6  - mov rdx,rsi
+2A13F75AC70 - 4C 8B C7  - mov r8,rdi
+2A13F75AC73 - 83 38 00 - cmp dword ptr [rax],00
+2A13F75AC76 - 49 BB 01AF753FA1020000 - mov r11,000002A13F75AF01
+OK
+
+=== Radio.UnitController:DamageTakenSimple ===
+JIT address: 0x2A13F75AF50; size: 324
+2A13F75AF50 - 55 - push rbp
+2A13F75AF51 - 48 8B EC  - mov rbp,rsp
+2A13F75AF54 - 48 83 EC 50 - sub rsp,50
+2A13F75AF58 - 48 89 7D E8  - mov [rbp-18],rdi
+2A13F75AF5C - 4C 89 75 F0  - mov [rbp-10],r14
+2A13F75AF60 - 4C 89 7D F8  - mov [rbp-08],r15
+2A13F75AF64 - 4C 8B F9  - mov r15,rcx
+2A13F75AF67 - F3 0F11 4D D8  - movss [rbp-28],xmm1
+2A13F75AF6C - F3 0F11 55 D0  - movss [rbp-30],xmm2
+2A13F75AF71 - 49 8B F9  - mov rdi,r9
+2A13F75AF74 - 66 90 - nop 2
+2A13F75AF76 - 49 BB CEB0753FA1020000 - mov r11,000002A13F75B0CE
+2A13F75AF80 - 41 FF D3  - call r11
+2A13F75AF83 - 66 0F57 C0  - xorpd xmm0,xmm0
+2A13F75AF87 - 33 C0  - xor eax,eax
+2A13F75AF89 - 4C 0FB6 F0  - movzx r14,al
+2A13F75AF8D - F3 0F10 45 D8  - movss xmm0,[rbp-28]
+2A13F75AF92 - F3 0F5A C0  - cvtss2sd xmm0,xmm0
+2A13F75AF96 - 49 8B CF  - mov rcx,r15
+2A13F75AF99 - 4C 8B C7  - mov r8,rdi
+2A13F75AF9C - 4D 8B CF  - mov r9,r15
+2A13F75AF9F - F2 0F10 C8  - movsd xmm1,xmm0
+2A13F75AFA3 - F2 0F5A C9  - cvtsd2ss xmm1,xmm1
+2A13F75AFA7 - 48 8D AD 00000000  - lea rbp,[rbp+00000000]
+2A13F75AFAE - 49 BB C0B0753FA1020000 - mov r11,000002A13F75B0C0
+2A13F75AFB8 - 41 FF D3  - call r11
+2A13F75AFBB - F3 0F5A C0  - cvtss2sd xmm0,xmm0
+2A13F75AFBF - F2 0F5A E8  - cvtsd2ss xmm5,xmm0
+2A13F75AFC3 - F3 0F11 6D D8  - movss [rbp-28],xmm5
+2A13F75AFC8 - F3 0F10 45 D8  - movss xmm0,[rbp-28]
+2A13F75AFCD - F3 0F5A C0  - cvtss2sd xmm0,xmm0
+2A13F75AFD1 - F3 0F10 4D D0  - movss xmm1,[rbp-30]
+2A13F75AFD6 - F3 0F5A C9  - cvtss2sd xmm1,xmm1
+2A13F75AFDA - F2 0F59 C1  - mulsd xmm0,xmm1
+2A13F75AFDE - F2 0F5A E8  - cvtsd2ss xmm5,xmm0
+2A13F75AFE2 - F3 0F11 6D E4  - movss [rbp-1C],xmm5
+2A13F75AFE7 - F3 0F10 05 A1000000  - movss xmm0,[2A13F75B090]
+2A13F75AFEF - F3 0F5A C0  - cvtss2sd xmm0,xmm0
+2A13F75AFF3 - F3 0F10 0D 85000000  - movss xmm1,[2A13F75B080]
+2A13F75AFFB - F3 0F5A C9  - cvtss2sd xmm1,xmm1
+2A13F75AFFF - F2 0F5A C9  - cvtsd2ss xmm1,xmm1
+2A13F75B003 - F2 0F5A C0  - cvtsd2ss xmm0,xmm0
+2A13F75B007 - 48 8D AD 00000000  - lea rbp,[rbp+00000000]
+2A13F75B00E - 49 BB B2B0753FA1020000 - mov r11,000002A13F75B0B2
+2A13F75B018 - 41 FF D3  - call r11
+2A13F75B01B - F3 0F5A C0  - cvtss2sd xmm0,xmm0
+2A13F75B01F - F3 41 0F10 8F 70010000  - movss xmm1,[r15+00000170]
+2A13F75B028 - F3 0F5A C9  - cvtss2sd xmm1,xmm1
+2A13F75B02C - F2 0F59 C1  - mulsd xmm0,xmm1
+2A13F75B030 - F3 0F10 4D E4  - movss xmm1,[rbp-1C]
+2A13F75B035 - F3 0F5A C9  - cvtss2sd xmm1,xmm1
+2A13F75B039 - 66 0F2F C8  - comisd xmm1,xmm0
+2A13F75B03D - 0F86 21000000 - jbe 2A13F75B064
+2A13F75B043 - 49 8B CF  - mov rcx,r15
+2A13F75B046 - 48 8B D7  - mov rdx,rdi
+2A13F75B049 - 44 0FB6 45 30  - movzx r8d,byte ptr [rbp+30]
+2A13F75B04E - 49 BB A4B0753FA1020000 - mov r11,000002A13F75B0A4
+2A13F75B058 - 41 FF D3  - call r11
+2A13F75B05B - B8 01000000 - mov eax,00000001
+2A13F75B060 - 4C 0FB6 F0  - movzx r14,al
+2A13F75B064 - 49 8B C6  - mov rax,r14
+2A13F75B067 - 48 8B 7D E8  - mov rdi,[rbp-18]
+2A13F75B06B - 4C 8B 75 F0  - mov r14,[rbp-10]
+2A13F75B06F - 4C 8B 7D F8  - mov r15,[rbp-08]
+2A13F75B073 - 48 8D 65 00  - lea rsp,[rbp+00]
+2A13F75B077 - 5D - pop rbp
+2A13F75B078 - C3 - ret 
+2A13F75B079 - 00 00  - add [rax],al
+2A13F75B07B - 00 00  - add [rax],al
+2A13F75B07D - 00 00  - add [rax],al
+2A13F75B07F - 00 00  - add [rax],al
+2A13F75B081 - 00 80 3F000000  - add [rax+0000003F],al
+2A13F75B087 - 00 FF  - add bh,bh
+2A13F75B089 - FF - db -01
+2A13F75B08A - FF - db -01
+2A13F75B08B - FF - db -01
+2A13F75B08C - FF - db -01
+2A13F75B08D - FF - db -01
+2A13F75B08E - FF - db -01
+2A13F75B08F - FF CD  - dec ebp
+OK
+
+=== Radio.UnitController:HealthyToDeadCore ===
+JIT address: 0x2A13F75B0E0; size: 309
+2A13F75B0E0 - 55 - push rbp
+2A13F75B0E1 - 48 8B EC  - mov rbp,rsp
+2A13F75B0E4 - 48 83 EC 30 - sub rsp,30
+2A13F75B0E8 - 48 89 7D F8  - mov [rbp-08],rdi
+2A13F75B0EC - 48 8B F9  - mov rdi,rcx
+2A13F75B0EF - 48 89 55 F0  - mov [rbp-10],rdx
+2A13F75B0F3 - 48 63 97 60010000  - movsxd  rdx,dword ptr [rdi+00000160]
+2A13F75B0FA - FF CA  - dec edx
+2A13F75B0FC - 48 8B CF  - mov rcx,rdi
+2A13F75B0FF - 48 8D AD 00000000  - lea rbp,[rbp+00000000]
+2A13F75B106 - 49 BB 41B2753FA1020000 - mov r11,000002A13F75B241
+2A13F75B110 - 41 FF D3  - call r11
+2A13F75B113 - 48 63 87 68010000  - movsxd  rax,dword ptr [rdi+00000168]
+2A13F75B11A - FF C0  - inc eax
+2A13F75B11C - 89 87 68010000  - mov [rdi+00000168],eax
+2A13F75B122 - 48 8B 47 18  - mov rax,[rdi+18]
+2A13F75B126 - 48 8B C8  - mov rcx,rax
+2A13F75B129 - 83 39 00 - cmp dword ptr [rcx],00
+2A13F75B12C - 48 8B 40 18  - mov rax,[rax+18]
+2A13F75B130 - 48 63 80 B0010000  - movsxd  rax,dword ptr [rax+000001B0]
+2A13F75B137 - 85 C0  - test eax,eax
+2A13F75B139 - 75 30 - jne 2A13F75B16B
+2A13F75B13B - 48 8B 47 18  - mov rax,[rdi+18]
+2A13F75B13F - 48 8B C8  - mov rcx,rax
+2A13F75B142 - 83 39 00 - cmp dword ptr [rcx],00
+2A13F75B145 - 48 8B 40 18  - mov rax,[rax+18]
+2A13F75B149 - 48 63 80 B8010000  - movsxd  rax,dword ptr [rax+000001B8]
+2A13F75B150 - 48 B9 F47DCDF6A0020000 - mov rcx,000002A0F6CD7DF4
+2A13F75B15A - 48 63 09  - movsxd  rcx,dword ptr [rcx]
+2A13F75B15D - 03 C8  - add ecx,eax
+2A13F75B15F - 48 B8 F47DCDF6A0020000 - mov rax,000002A0F6CD7DF4
+2A13F75B169 - 89 08  - mov [rax],ecx
+2A13F75B16B - 48 8B 47 18  - mov rax,[rdi+18]
+2A13F75B16F - 48 8B C8  - mov rcx,rax
+2A13F75B172 - 83 39 00 - cmp dword ptr [rcx],00
+2A13F75B175 - 48 8B 40 18  - mov rax,[rax+18]
+2A13F75B179 - 48 63 80 A8010000  - movsxd  rax,dword ptr [rax+000001A8]
+2A13F75B180 - 83 F8 01 - cmp eax,01
+2A13F75B183 - 75 30 - jne 2A13F75B1B5
+2A13F75B185 - 48 8B 47 18  - mov rax,[rdi+18]
+2A13F75B189 - 48 8B C8  - mov rcx,rax
+2A13F75B18C - 83 39 00 - cmp dword ptr [rcx],00
+2A13F75B18F - 48 8B 40 18  - mov rax,[rax+18]
+2A13F75B193 - 48 63 80 B8010000  - movsxd  rax,dword ptr [rax+000001B8]
+2A13F75B19A - 48 B9 FC7DCDF6A0020000 - mov rcx,000002A0F6CD7DFC
+2A13F75B1A4 - 48 63 09  - movsxd  rcx,dword ptr [rcx]
+2A13F75B1A7 - 03 C8  - add ecx,eax
+2A13F75B1A9 - 48 B8 FC7DCDF6A0020000 - mov rax,000002A0F6CD7DFC
+2A13F75B1B3 - 89 08  - mov [rax],ecx
+2A13F75B1B5 - 48 8B CF  - mov rcx,rdi
+2A13F75B1B8 - 48 8D 64 24 00  - lea rsp,[rsp+00]
+2A13F75B1BD - 90 - nop 
+2A13F75B1BE - 49 BB 33B2753FA1020000 - mov r11,000002A13F75B233
+2A13F75B1C8 - 41 FF D3  - call r11
+2A13F75B1CB - 0FB6 45 F0  - movzx eax,byte ptr [rbp-10]
+2A13F75B1CF - 85 C0  - test eax,eax
+2A13F75B1D1 - 0F84 34000000 - je 2A13F75B20B
+2A13F75B1D7 - 48 8B 4F 78  - mov rcx,[rdi+78]
+2A13F75B1DB - 33 D2  - xor edx,edx
+2A13F75B1DD - 90 - nop 
+2A13F75B1DE - 49 BB D329AE42A1020000 - mov r11,000002A142AE29D3
+2A13F75B1E8 - 41 FF D3  - call r11
+2A13F75B1EB - 85 C0  - test eax,eax
+2A13F75B1ED - 74 1C - je 2A13F75B20B
+2A13F75B1EF - 48 8B 47 78  - mov rax,[rdi+78]
+2A13F75B1F3 - 48 8B C8  - mov rcx,rax
+2A13F75B1F6 - 83 38 00 - cmp dword ptr [rax],00
+2A13F75B1F9 - 48 8D 64 24 00  - lea rsp,[rsp+00]
+2A13F75B1FE - 49 BB 25B2753FA1020000 - mov r11,000002A13F75B225
+2A13F75B208 - 41 FF D3  - call r11
+2A13F75B20B - 48 8B 7D F8  - mov rdi,[rbp-08]
+2A13F75B20F - 48 8D 65 00  - lea rsp,[rbp+00]
+2A13F75B213 - 5D - pop rbp
+2A13F75B214 - C3 - ret 
+OK
+
+=== Radio.UnitAff/UnitTeam fields ===
+UnitAff.value__ off=16 typename=System.Int32
+UnitAff.Friendly off=0 typename=Radio.UnitAff
+UnitAff.Enemy off=0 typename=Radio.UnitAff
+UnitAff.Neutral off=0 typename=Radio.UnitAff
+UnitAff.Unknown off=0 typename=Radio.UnitAff
+UnitAff.None off=0 typename=Radio.UnitAff
+UnitTeam.value__ off=16 typename=System.Int32
+UnitTeam.PB off=0 typename=Radio.UnitTeam
+UnitTeam.VC off=0 typename=Radio.UnitTeam
+UnitTeam.US off=0 typename=Radio.UnitTeam
+UnitTeam.ARVN off=0 typename=Radio.UnitTeam
+UnitTeam.NVA off=0 typename=Radio.UnitTeam

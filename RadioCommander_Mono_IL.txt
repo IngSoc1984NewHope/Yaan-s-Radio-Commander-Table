@@ -1,0 +1,785 @@
+
+===== Lemrh.CheatController.CheatSwitched =====
+Signature: 
+Return: System.Void
+IL_0000: ldc.i4.0  
+IL_0001: stloc.0   
+IL_0002: ldarg.0   
+IL_0003: ldfld     0x040006e2
+IL_0008: stloc.1   
+IL_0009: ldc.i4.0  
+IL_000a: stloc.2   
+IL_000b: br.s      IL_001f
+IL_000d: ldloc.1   
+IL_000e: ldloc.2   
+IL_000f: ldelem.ref
+IL_0010: callvirt  0x06000530
+IL_0015: brfalse.s IL_001b
+IL_0017: ldc.i4.1  
+IL_0018: stloc.0   
+IL_0019: br.s      IL_0025
+IL_001b: ldloc.2   
+IL_001c: ldc.i4.1  
+IL_001d: add       
+IL_001e: stloc.2   
+IL_001f: ldloc.2   
+IL_0020: ldloc.1   
+IL_0021: ldlen     
+IL_0022: conv.i4   
+IL_0023: blt.s     IL_000d
+IL_0025: ldloc.0   
+IL_0026: brfalse.s IL_0034
+IL_0028: ldarg.0   
+IL_0029: ldfld     0x040006e3
+IL_002e: callvirt  0x0a0000a4
+IL_0033: ret       
+IL_0034: ldarg.0   
+IL_0035: ldfld     0x040006e4
+IL_003a: callvirt  0x0a0000a4
+IL_003f: ret       
+
+
+===== Lemrh.CheatEntity.SwitchCheat =====
+Signature: 
+Return: System.Void
+IL_0000: ldarg.0   
+IL_0001: ldfld     0x040006e8
+IL_0006: ldnull    
+IL_0007: call      0x0a00000a
+IL_000c: brfalse.s IL_0041
+IL_000e: ldarg.0   
+IL_000f: ldfld     0x040006e8
+IL_0014: ldarg.0   
+IL_0015: ldfld     0x040006e8
+IL_001a: callvirt  0x060007b5
+IL_001f: ldc.i4.0  
+IL_0020: ceq       
+IL_0022: callvirt  0x060007b6
+IL_0027: ldarg.0   
+IL_0028: ldarg.0   
+IL_0029: ldfld     0x040006eb
+IL_002e: ldc.i4.0  
+IL_002f: ceq       
+IL_0031: stfld     0x040006eb
+IL_0036: ldarg.0   
+IL_0037: ldfld     0x040006ea
+IL_003c: callvirt  0x0600052a
+IL_0041: ldarg.0   
+IL_0042: ldfld     0x040006e9
+IL_0047: callvirt  0x0a0000a4
+IL_004c: ldarg.0   
+IL_004d: call      0x0600052f
+IL_0052: ret       
+
+
+===== Lemrh.GameController.Save =====
+Signature: 
+Return: System.Void
+IL_0000: call      0x060005bd
+IL_0005: ret       
+
+
+===== Lemrh.GameController.SaveCurrentMissionInStatus =====
+Signature: 
+Return: System.Void
+IL_0000: ldstr     "Main saving system... Working..."
+IL_0005: call      0x0a000022
+IL_000a: ldc.i4.0  
+IL_000b: stloc.0   
+IL_000c: ldc.i4.1  
+IL_000d: call      0x06000e3c
+IL_0012: stloc.1   
+IL_0013: ldc.i4.0  
+IL_0014: stloc.2   
+IL_0015: br        IL_0114
+IL_001a: ldc.i4.0  
+IL_001b: stloc.3   
+IL_001c: ldc.i4.0  
+IL_001d: stloc.s   4
+IL_001f: ldc.i4.0  
+IL_0020: stloc.s   5
+IL_0022: ldsfld    0x04000742
+IL_0027: ldfld     0x04000870
+IL_002c: ldloc.2   
+IL_002d: callvirt  0x0a000465
+IL_0032: ldfld     0x04000871
+IL_0037: ldsfld    0x04000744
+IL_003c: ldfld     0x04001188
+IL_0041: bne.un    IL_0110
+IL_0046: ldsfld    0x04000742
+IL_004b: ldfld     0x04000870
+IL_0050: ldloc.2   
+IL_0051: callvirt  0x0a000465
+IL_0056: ldfld     0x0400087f
+IL_005b: brfalse.s IL_005f
+IL_005d: ldc.i4.1  
+IL_005e: stloc.3   
+IL_005f: ldsfld    0x04000742
+IL_0064: ldfld     0x04000870
+IL_0069: ldloc.2   
+IL_006a: callvirt  0x0a000465
+IL_006f: ldfld     0x04000880
+IL_0074: brfalse.s IL_0079
+IL_0076: ldc.i4.1  
+IL_0077: stloc.s   4
+IL_0079: ldsfld    0x04000742
+IL_007e: ldfld     0x04000870
+IL_0083: ldloc.2   
+IL_0084: callvirt  0x0a000465
+IL_0089: ldfld     0x04000872
+IL_008e: stloc.s   5
+IL_0090: ldsfld    0x04000742
+IL_0095: ldfld     0x04000870
+IL_009a: ldloc.2   
+IL_009b: ldloc.1   
+IL_009c: callvirt  0x0a000466
+IL_00a1: ldstr     "Override mission status..."
+IL_00a6: call      0x0a000022
+IL_00ab: ldc.i4.1  
+IL_00ac: stloc.0   
+IL_00ad: ldloc.3   
+IL_00ae: brfalse.s IL_00c6
+IL_00b0: ldsfld    0x04000742
+IL_00b5: ldfld     0x04000870
+IL_00ba: ldloc.2   
+IL_00bb: callvirt  0x0a000465
+IL_00c0: ldc.i4.1  
+IL_00c1: stfld     0x0400087f
+IL_00c6: ldloc.s   4
+IL_00c8: brfalse.s IL_00e0
+IL_00ca: ldsfld    0x04000742
+IL_00cf: ldfld     0x04000870
+IL_00d4: ldloc.2   
+IL_00d5: callvirt  0x0a000465
+IL_00da: ldc.i4.1  
+IL_00db: stfld     0x04000880
+IL_00e0: ldloc.s   5
+IL_00e2: ldsfld    0x04000742
+IL_00e7: ldfld     0x04000870
+IL_00ec: ldloc.2   
+IL_00ed: callvirt  0x0a000465
+IL_00f2: ldfld     0x04000872
+IL_00f7: ble.s     IL_0110
+IL_00f9: ldsfld    0x04000742
+IL_00fe: ldfld     0x04000870
+IL_0103: ldloc.2   
+IL_0104: callvirt  0x0a000465
+IL_0109: ldloc.s   5
+IL_010b: stfld     0x04000872
+IL_0110: ldloc.2   
+IL_0111: ldc.i4.1  
+IL_0112: add       
+IL_0113: stloc.2   
+IL_0114: ldloc.2   
+IL_0115: ldsfld    0x04000742
+IL_011a: ldfld     0x04000870
+IL_011f: callvirt  0x0a000467
+IL_0124: blt       IL_001a
+IL_0129: ldloc.0   
+IL_012a: brtrue.s  IL_0146
+IL_012c: ldsfld    0x04000742
+IL_0131: ldfld     0x04000870
+IL_0136: ldloc.1   
+IL_0137: callvirt  0x0a000468
+IL_013c: ldstr     "Add new mission status..."
+IL_0141: call      0x0a000022
+IL_0146: ldsfld    0x04000744
+IL_014b: ldfld     0x04001188
+IL_0150: call      0x0600070d
+IL_0155: ldsfld    0x04000744
+IL_015a: ldfld     0x04001188
+IL_015f: call      0x06000df4
+IL_0164: call      0x0600070e
+IL_0169: ret       
+
+
+===== Radio.UnitController.AddSupplies =====
+Signature: single
+Return: System.Void
+IL_0000: ldarg.0   
+IL_0001: ldfld     0x040014d7
+IL_0006: brfalse.s IL_0023
+IL_0008: ldstr     "AddSupplies("
+IL_000d: ldarga.s  1
+IL_000f: call      0x0a0003ce
+IL_0014: ldstr     ")"
+IL_0019: call      0x0a00004a
+IL_001e: call      0x0a000022
+IL_0023: ldarg.1   
+IL_0024: ldc.r4    0
+IL_0029: bge.un.s  IL_0038
+IL_002b: ldarg.0   
+IL_002c: ldfld     0x040014d9
+IL_0031: callvirt  0x06000a5f
+IL_0036: brfalse.s IL_003b
+IL_0038: ldc.i4.0  
+IL_0039: br.s      IL_0046
+IL_003b: ldarg.0   
+IL_003c: ldfld     0x040014d9
+IL_0041: callvirt  0x06000ab1
+IL_0046: brfalse.s IL_0049
+IL_0048: ret       
+IL_0049: ldarg.0   
+IL_004a: ldfld     0x040014d7
+IL_004f: brfalse.s IL_005b
+IL_0051: ldstr     "2nd"
+IL_0056: call      0x0a000022
+IL_005b: ldarg.0   
+IL_005c: ldfld     0x040014d9
+IL_0061: callvirt  0x06000ab2
+IL_0066: brfalse.s IL_0099
+IL_0068: ldarg.0   
+IL_0069: ldarg.0   
+IL_006a: ldfld     0x040014f6
+IL_006f: ldarg.1   
+IL_0070: ldarg.0   
+IL_0071: ldfld     0x040014d9
+IL_0076: callvirt  0x06000ab3
+IL_007b: mul       
+IL_007c: add       
+IL_007d: ldc.r4    0
+IL_0082: ldarg.0   
+IL_0083: ldfld     0x040014d9
+IL_0088: callvirt  0x06000a6a
+IL_008d: call      0x0a00012b
+IL_0092: call      0x0600125e
+IL_0097: br.s      IL_00bc
+IL_0099: ldarg.0   
+IL_009a: ldarg.0   
+IL_009b: ldfld     0x040014f6
+IL_00a0: ldarg.1   
+IL_00a1: add       
+IL_00a2: ldc.r4    0
+IL_00a7: ldarg.0   
+IL_00a8: ldfld     0x040014d9
+IL_00ad: callvirt  0x06000a6a
+IL_00b2: call      0x0a00012b
+IL_00b7: call      0x0600125e
+IL_00bc: ldarg.0   
+IL_00bd: ldfld     0x040014d7
+IL_00c2: brfalse.s IL_00e1
+IL_00c4: ldstr     "CurrentUnitSupplies = "
+IL_00c9: ldarg.0   
+IL_00ca: call      0x0600125d
+IL_00cf: stloc.0   
+IL_00d0: ldloca.s  0
+IL_00d2: call      0x0a0003ce
+IL_00d7: call      0x0a00006e
+IL_00dc: call      0x0a000022
+IL_00e1: ret       
+
+
+===== Radio.UnitController.DamageTaken =====
+Signature: Radio.UnitController,single,single
+Return: System.Void
+IL_0000: ldarg.0   
+IL_0001: ldfld     0x04001514
+IL_0006: ldarg.1   
+IL_0007: callvirt  0x0a000559
+IL_000c: brtrue    IL_009b
+IL_0011: ldarg.0   
+IL_0012: ldfld     0x04001514
+IL_0017: ldarg.1   
+IL_0018: callvirt  0x0a00030f
+IL_001d: ldarg.0   
+IL_001e: ldarg.1   
+IL_001f: call      0x0600123a
+IL_0024: ldarg.0   
+IL_0025: ldfld     0x04001521
+IL_002a: ldnull    
+IL_002b: call      0x0a00000a
+IL_0030: brfalse.s IL_003e
+IL_0032: ldarg.0   
+IL_0033: ldfld     0x04001521
+IL_0038: ldarg.1   
+IL_0039: callvirt  0x06000eee
+IL_003e: ldarg.0   
+IL_003f: ldfld     0x0400152a
+IL_0044: ldnull    
+IL_0045: call      0x0a00000a
+IL_004a: brfalse.s IL_0081
+IL_004c: ldarg.1   
+IL_004d: ldfld     0x040014d9
+IL_0052: callvirt  0x06000a5f
+IL_0057: ldarg.0   
+IL_0058: ldfld     0x040014d9
+IL_005d: callvirt  0x06000a5f
+IL_0062: bne.un.s  IL_0074
+IL_0064: ldarg.0   
+IL_0065: ldfld     0x0400152a
+IL_006a: ldfld     0x040010cf
+IL_006f: callvirt  0x0a0000a4
+IL_0074: ldarg.0   
+IL_0075: ldfld     0x0400152a
+IL_007a: ldarg.1   
+IL_007b: ldarg.0   
+IL_007c: callvirt  0x0600102a
+IL_0081: ldarg.0   
+IL_0082: ldfld     0x0400152b
+IL_0087: ldnull    
+IL_0088: call      0x0a00000a
+IL_008d: brfalse.s IL_009b
+IL_008f: ldarg.0   
+IL_0090: ldfld     0x0400152b
+IL_0095: ldarg.1   
+IL_0096: callvirt  0x06000895
+IL_009b: ldarg.0   
+IL_009c: ldc.r4    0
+IL_00a1: stfld     0x04001515
+IL_00a6: ldarg.0   
+IL_00a7: ldfld     0x04001508
+IL_00ac: ldc.i4.1  
+IL_00ad: beq.s     IL_00cc
+IL_00af: ldarg.0   
+IL_00b0: ldfld     0x04001508
+IL_00b5: ldc.i4.2  
+IL_00b6: beq.s     IL_00cc
+IL_00b8: ldarg.0   
+IL_00b9: ldfld     0x040014d9
+IL_00be: callvirt  0x06000a74
+IL_00c3: brtrue.s  IL_00cc
+IL_00c5: ldarg.0   
+IL_00c6: ldc.i4.0  
+IL_00c7: call      0x0600123c
+IL_00cc: ldarg.0   
+IL_00cd: ldc.i4.0  
+IL_00ce: stfld     0x04001500
+IL_00d3: ldarg.2   
+IL_00d4: ldc.r4    0
+IL_00d9: ble.un.s  IL_00ef
+IL_00db: ldarg.3   
+IL_00dc: ldc.r4    0
+IL_00e1: ble.un.s  IL_00ef
+IL_00e3: ldarg.0   
+IL_00e4: ldarg.2   
+IL_00e5: ldarg.3   
+IL_00e6: ldarg.1   
+IL_00e7: ldc.i4.1  
+IL_00e8: call      0x0600122b
+IL_00ed: pop       
+IL_00ee: ret       
+IL_00ef: ldarg.2   
+IL_00f0: ldc.r4    0
+IL_00f5: ble.un.s  IL_010d
+IL_00f7: ldarg.0   
+IL_00f8: ldarg.2   
+IL_00f9: ldarg.1   
+IL_00fa: ldfld     0x040014d9
+IL_00ff: callvirt  0x06000ab4
+IL_0104: ldarg.1   
+IL_0105: ldc.i4.1  
+IL_0106: call      0x0600122b
+IL_010b: pop       
+IL_010c: ret       
+IL_010d: ldarg.0   
+IL_010e: ldarg.1   
+IL_010f: callvirt  0x06001256
+IL_0114: ldarg.1   
+IL_0115: ldfld     0x040014d9
+IL_011a: callvirt  0x06000ab4
+IL_011f: ldarg.1   
+IL_0120: ldc.i4.1  
+IL_0121: call      0x0600122b
+IL_0126: pop       
+IL_0127: ret       
+
+
+===== Radio.UnitController.DamageTakenSimple =====
+Signature: single,single,Radio.UnitController,bool
+Return: System.Boolean
+IL_0000: ldarg.0   
+IL_0001: call      0x0600127e
+IL_0006: ldc.r4    0
+IL_000b: stloc.0   
+IL_000c: ldc.i4.0  
+IL_000d: stloc.1   
+IL_000e: ldarg.0   
+IL_000f: ldarg.1   
+IL_0010: ldarg.3   
+IL_0011: ldarg.0   
+IL_0012: call      0x0600122c
+IL_0017: starg.s   1
+IL_0019: ldarg.1   
+IL_001a: ldarg.2   
+IL_001b: mul       
+IL_001c: stloc.0   
+IL_001d: ldc.r4    0.1
+IL_0022: ldc.r4    1
+IL_0027: call      0x0a000188
+IL_002c: ldarg.0   
+IL_002d: ldfld     0x040014f2
+IL_0032: mul       
+IL_0033: ldloc.0   
+IL_0034: bge.un.s  IL_0041
+IL_0036: ldarg.0   
+IL_0037: ldarg.3   
+IL_0038: ldarg.s   4
+IL_003a: call      0x0600122e
+IL_003f: ldc.i4.1  
+IL_0040: stloc.1   
+IL_0041: ldloc.1   
+IL_0042: ret       
+
+
+===== Radio.UnitController.HealthyToDeadCore =====
+Signature: bool
+Return: System.Void
+IL_0000: ldarg.0   
+IL_0001: ldarg.0   
+IL_0002: ldfld     0x040014ed
+IL_0007: ldc.i4.1  
+IL_0008: sub       
+IL_0009: call      0x0600124e
+IL_000e: ldarg.0   
+IL_000f: ldarg.0   
+IL_0010: ldfld     0x040014f0
+IL_0015: ldc.i4.1  
+IL_0016: add       
+IL_0017: stfld     0x040014f0
+IL_001c: ldarg.0   
+IL_001d: ldfld     0x040014d9
+IL_0022: callvirt  0x06000a61
+IL_0027: brtrue.s  IL_0039
+IL_0029: ldarg.0   
+IL_002a: ldfld     0x040014d9
+IL_002f: callvirt  0x06000a95
+IL_0034: call      0x06000e2d
+IL_0039: ldarg.0   
+IL_003a: ldfld     0x040014d9
+IL_003f: callvirt  0x06000a5f
+IL_0044: ldc.i4.1  
+IL_0045: bne.un.s  IL_0057
+IL_0047: ldarg.0   
+IL_0048: ldfld     0x040014d9
+IL_004d: callvirt  0x06000a95
+IL_0052: call      0x06000e30
+IL_0057: ldarg.0   
+IL_0058: call      0x06001238
+IL_005d: ldarg.1   
+IL_005e: brfalse.s IL_0079
+IL_0060: ldarg.0   
+IL_0061: ldfld     0x04001521
+IL_0066: ldnull    
+IL_0067: call      0x0a00000a
+IL_006c: brfalse.s IL_0079
+IL_006e: ldarg.0   
+IL_006f: ldfld     0x04001521
+IL_0074: callvirt  0x06000f02
+IL_0079: ret       
+
+
+===== Radio.FuelUnitController.ConsumeFuel =====
+Signature: 
+Return: System.Void
+IL_0000: ldarg.0   
+IL_0001: ldfld     0x04000dae
+IL_0006: ldfld     0x040014d9
+IL_000b: callvirt  0x06000ad5
+IL_0010: brfalse.s IL_0013
+IL_0012: ret       
+IL_0013: ldarg.0   
+IL_0014: ldfld     0x04000daf
+IL_0019: brfalse   IL_009e
+IL_001e: ldarg.0   
+IL_001f: ldarg.0   
+IL_0020: ldfld     0x04000dad
+IL_0025: ldarg.0   
+IL_0026: ldfld     0x04000dac
+IL_002b: ldfld     0x04001138
+IL_0030: ldarg.0   
+IL_0031: ldfld     0x04000dae
+IL_0036: ldfld     0x040014d9
+IL_003b: callvirt  0x06000a84
+IL_0040: div       
+IL_0041: call      0x0a000140
+IL_0046: mul       
+IL_0047: call      0x0600118a
+IL_004c: conv.r4   
+IL_004d: mul       
+IL_004e: sub       
+IL_004f: ldc.r4    0
+IL_0054: ldarg.0   
+IL_0055: ldfld     0x04000dae
+IL_005a: ldfld     0x040014d9
+IL_005f: callvirt  0x06000a85
+IL_0064: call      0x0a00012b
+IL_0069: stfld     0x04000db0
+IL_006e: ldarg.0   
+IL_006f: ldarg.0   
+IL_0070: ldfld     0x04000dad
+IL_0075: ldarg.0   
+IL_0076: ldfld     0x04000db0
+IL_007b: call      0x06000be2
+IL_0080: ldarg.0   
+IL_0081: ldarg.0   
+IL_0082: ldfld     0x04000dad
+IL_0087: ldarg.0   
+IL_0088: ldfld     0x04000db0
+IL_008d: call      0x06000be3
+IL_0092: ldarg.0   
+IL_0093: ldarg.0   
+IL_0094: ldfld     0x04000db0
+IL_0099: stfld     0x04000dad
+IL_009e: ret       
+
+
+===== Radio.StaminaUnitController.ConsumeStamina =====
+Signature: 
+Return: System.Void
+IL_0000: ldarg.0   
+IL_0001: ldfld     0x040013f2
+IL_0006: ldnull    
+IL_0007: call      0x0a000008
+IL_000c: brfalse.s IL_000f
+IL_000e: ret       
+IL_000f: ldarg.0   
+IL_0010: ldfld     0x040013f2
+IL_0015: ldfld     0x040014d9
+IL_001a: callvirt  0x06000ad5
+IL_001f: brfalse.s IL_0022
+IL_0021: ret       
+IL_0022: ldarg.0   
+IL_0023: ldfld     0x040013f2
+IL_0028: callvirt  0x06001267
+IL_002d: ldc.i4.1  
+IL_002e: bne.un    IL_0179
+IL_0033: ldarg.0   
+IL_0034: ldfld     0x040013f2
+IL_0039: ldfld     0x040014d9
+IL_003e: callvirt  0x06000ad6
+IL_0043: brfalse.s IL_00b4
+IL_0045: ldarg.0   
+IL_0046: ldarg.0   
+IL_0047: ldfld     0x040013f0
+IL_004c: ldarg.0   
+IL_004d: call      0x0a000053
+IL_0052: callvirt  0x0a000061
+IL_0057: call      0x0a00002e
+IL_005c: stloc.0   
+IL_005d: ldloca.s  0
+IL_005f: call      0x0a00002f
+IL_0064: ldarg.0   
+IL_0065: ldfld     0x040013f2
+IL_006a: callvirt  0x06001278
+IL_006f: ldc.i4.2  
+IL_0070: beq.s     IL_007f
+IL_0072: ldarg.0   
+IL_0073: ldfld     0x040013ee
+IL_0078: ldfld     0x04001339
+IL_007d: br.s      IL_008a
+IL_007f: ldarg.0   
+IL_0080: ldfld     0x040013ee
+IL_0085: ldfld     0x0400133a
+IL_008a: mul       
+IL_008b: ldarg.0   
+IL_008c: ldfld     0x040013f2
+IL_0091: callvirt  0x0600129b
+IL_0096: callvirt  0x060012ef
+IL_009b: mul       
+IL_009c: ldarg.0   
+IL_009d: ldfld     0x040013f2
+IL_00a2: ldfld     0x040014d9
+IL_00a7: callvirt  0x06000ad7
+IL_00ac: mul       
+IL_00ad: stfld     0x040013f3
+IL_00b2: br.s      IL_0110
+IL_00b4: ldarg.0   
+IL_00b5: ldarg.0   
+IL_00b6: ldfld     0x040013f0
+IL_00bb: ldarg.0   
+IL_00bc: call      0x0a000053
+IL_00c1: callvirt  0x0a000061
+IL_00c6: call      0x0a00002e
+IL_00cb: stloc.0   
+IL_00cc: ldloca.s  0
+IL_00ce: call      0x0a00002f
+IL_00d3: ldarg.0   
+IL_00d4: ldfld     0x040013f2
+IL_00d9: callvirt  0x06001278
+IL_00de: ldc.i4.2  
+IL_00df: beq.s     IL_00ee
+IL_00e1: ldarg.0   
+IL_00e2: ldfld     0x040013ee
+IL_00e7: ldfld     0x04001339
+IL_00ec: br.s      IL_00f9
+IL_00ee: ldarg.0   
+IL_00ef: ldfld     0x040013ee
+IL_00f4: ldfld     0x0400133a
+IL_00f9: mul       
+IL_00fa: ldarg.0   
+IL_00fb: ldfld     0x040013f2
+IL_0100: callvirt  0x0600129b
+IL_0105: callvirt  0x060012ef
+IL_010a: mul       
+IL_010b: stfld     0x040013f3
+IL_0110: ldarg.0   
+IL_0111: ldarg.0   
+IL_0112: ldfld     0x040013ef
+IL_0117: ldarg.0   
+IL_0118: ldfld     0x040013f3
+IL_011d: sub       
+IL_011e: stfld     0x040013f1
+IL_0123: ldarg.0   
+IL_0124: ldarg.0   
+IL_0125: ldfld     0x040013f3
+IL_012a: call      0x0600113d
+IL_012f: ldarg.0   
+IL_0130: ldarg.0   
+IL_0131: ldfld     0x040013ef
+IL_0136: ldarg.0   
+IL_0137: ldfld     0x040013f1
+IL_013c: call      0x06001139
+IL_0141: ldarg.0   
+IL_0142: ldarg.0   
+IL_0143: ldfld     0x040013ef
+IL_0148: ldarg.0   
+IL_0149: ldfld     0x040013f1
+IL_014e: call      0x0600113a
+IL_0153: ldarg.0   
+IL_0154: ldarg.0   
+IL_0155: ldfld     0x040013f1
+IL_015a: ldc.r4    0
+IL_015f: ldarg.0   
+IL_0160: ldfld     0x040013f2
+IL_0165: ldfld     0x040014d9
+IL_016a: callvirt  0x06000a7e
+IL_016f: call      0x0a00012b
+IL_0174: stfld     0x040013ef
+IL_0179: ldarg.0   
+IL_017a: ldarg.0   
+IL_017b: call      0x0a000053
+IL_0180: callvirt  0x0a000061
+IL_0185: stfld     0x040013f0
+IL_018a: ldarg.0   
+IL_018b: ldfld     0x040013f2
+IL_0190: callvirt  0x0600129b
+IL_0195: ldarg.0   
+IL_0196: ldfld     0x040013ef
+IL_019b: callvirt  0x060012f5
+IL_01a0: ret       
+
+
+===== Radio.TokenUpdateController.UpdateToken =====
+Signature: bool
+Return: System.Void
+IL_0000: ldarg.0   
+IL_0001: ldfld     0x04001451
+IL_0006: ldnull    
+IL_0007: call      0x0a00000a
+IL_000c: brfalse.s IL_001c
+IL_000e: ldarg.0   
+IL_000f: ldfld     0x04001451
+IL_0014: callvirt  0x060007b5
+IL_0019: brtrue.s  IL_0027
+IL_001b: ret       
+IL_001c: ldstr     "autoupdateTokens == null"
+IL_0021: call      0x0a00001c
+IL_0026: ret       
+IL_0027: ldarg.0   
+IL_0028: ldfld     0x04001452
+IL_002d: ldnull    
+IL_002e: call      0x0a00000a
+IL_0033: brfalse   IL_00c8
+IL_0038: ldarg.0   
+IL_0039: ldfld     0x04001450
+IL_003e: ldnull    
+IL_003f: call      0x0a00000a
+IL_0044: brfalse.s IL_00b7
+IL_0046: ldarg.0   
+IL_0047: ldfld     0x04001452
+IL_004c: callvirt  0x0600128d
+IL_0051: brfalse.s IL_005a
+IL_0053: ldarg.0   
+IL_0054: call      0x0600119a
+IL_0059: ret       
+IL_005a: ldarg.0   
+IL_005b: ldfld     0x04001453
+IL_0060: ldc.i4.0  
+IL_0061: ceq       
+IL_0063: ldarg.1   
+IL_0064: and       
+IL_0065: brfalse.s IL_0073
+IL_0067: ldarg.0   
+IL_0068: call      0x0600119a
+IL_006d: ldarg.0   
+IL_006e: call      0x06001198
+IL_0073: ldarg.0   
+IL_0074: ldarg.0   
+IL_0075: ldfld     0x04001450
+IL_007a: callvirt  0x0a000053
+IL_007f: callvirt  0x0a000061
+IL_0084: stfld     0x04001454
+IL_0089: ldarg.0   
+IL_008a: ldarg.0   
+IL_008b: ldfld     0x04001452
+IL_0090: callvirt  0x0a000053
+IL_0095: callvirt  0x0a000061
+IL_009a: stfld     0x04001455
+IL_009f: ldarg.0   
+IL_00a0: ldc.r4    0
+IL_00a5: stfld     0x04001456
+IL_00aa: ldarg.0   
+IL_00ab: ldfld     0x04001450
+IL_00b0: callvirt  0x06000c76
+IL_00b5: br.s      IL_00c8
+IL_00b7: ldarg.1   
+IL_00b8: brfalse.s IL_00c2
+IL_00ba: ldarg.0   
+IL_00bb: call      0x06001198
+IL_00c0: br.s      IL_00c8
+IL_00c2: ldarg.0   
+IL_00c3: call      0x06001199
+IL_00c8: ldarg.0   
+IL_00c9: ldarg.1   
+IL_00ca: stfld     0x04001453
+IL_00cf: ret       
+
+
+===== Radio.TokenUpdateController.UpdateMe =====
+Signature: 
+Return: System.Void
+IL_0000: ldarg.0   
+IL_0001: ldfld     0x04001451
+IL_0006: ldnull    
+IL_0007: call      0x0a00000a
+IL_000c: brfalse.s IL_001c
+IL_000e: ldarg.0   
+IL_000f: ldfld     0x04001451
+IL_0014: callvirt  0x060007b5
+IL_0019: brtrue.s  IL_001c
+IL_001b: ret       
+IL_001c: ldarg.0   
+IL_001d: ldfld     0x04001456
+IL_0022: ldarg.0   
+IL_0023: ldfld     0x04001457
+IL_0028: bge.un.s  IL_0080
+IL_002a: ldarg.0   
+IL_002b: ldarg.0   
+IL_002c: ldfld     0x04001456
+IL_0031: call      0x0a000140
+IL_0036: call      0x0600118a
+IL_003b: conv.r4   
+IL_003c: mul       
+IL_003d: add       
+IL_003e: ldc.r4    0
+IL_0043: ldarg.0   
+IL_0044: ldfld     0x04001457
+IL_0049: call      0x0a00012b
+IL_004e: stfld     0x04001456
+IL_0053: ldarg.0   
+IL_0054: call      0x06001196
+IL_0059: ldarg.0   
+IL_005a: ldfld     0x04001456
+IL_005f: ldarg.0   
+IL_0060: ldfld     0x04001457
+IL_0065: bne.un.s  IL_0080
+IL_0067: ldarg.0   
+IL_0068: ldfld     0x04001450
+IL_006d: ldnull    
+IL_006e: call      0x0a00000a
+IL_0073: brfalse.s IL_0080
+IL_0075: ldarg.0   
+IL_0076: ldfld     0x04001450
+IL_007b: callvirt  0x06000c77
+IL_0080: ret       
+

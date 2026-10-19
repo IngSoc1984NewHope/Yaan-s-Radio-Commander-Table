@@ -1,0 +1,489 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45"><CheatEntries><CheatEntry><ID>0</ID><Description>"Infinite ammo / friendly only [EXPERIMENTAL]"</Description><VariableType>Auto Assembler Script</VariableType><AssemblerScript>[ENABLE]
+{$lua}
+if syntaxcheck then return "define(RC_AMMO_TARGET,0x10000000)" end
+if not getOpenedProcessID() or getOpenedProcessID()==0 then error("Attach to Radio Commander first") end
+local base=LaunchMonoDataCollector()
+if not base or base==0 then error("Mono collector initialization failed") end
+local function check(ns,cls,field,expected)
+  local c=mono_findClass(ns,cls)
+  if not c or c==0 then error("Missing class: "..ns.."."..cls) end
+  local fs=mono_class_enumFields(c) or {}
+  for _,f in ipairs(fs) do
+    if f.name==field then
+      if f.offset~=expected then error("Unsafe offset mismatch "..ns.."."..cls.."."..field) end
+      return
+    end
+  end
+  error("Missing field: "..ns.."."..cls.."."..field)
+end
+check("Radio","UnitController","unitStats",0x18)
+check("Radio","SM_UniversalStatsSO","unitStats",0x18)
+check("Radio","UnitStats","unitSide",0x1A8)
+local defs={}
+local c_RC_AMMO_TARGET=mono_findClass("Radio","UnitController")
+if not c_RC_AMMO_TARGET or c_RC_AMMO_TARGET==0 then error("Missing Radio.UnitController") end
+local m_RC_AMMO_TARGET=mono_class_findMethod(c_RC_AMMO_TARGET,"AddSupplies")
+if not m_RC_AMMO_TARGET or m_RC_AMMO_TARGET==0 then error("Missing method UnitController.AddSupplies") end
+local a_RC_AMMO_TARGET=mono_compile_method(m_RC_AMMO_TARGET)
+if not a_RC_AMMO_TARGET or a_RC_AMMO_TARGET==0 then error("JIT failed: UnitController.AddSupplies") end
+defs[#defs+1]=string.format("define(RC_AMMO_TARGET,0x%X)",a_RC_AMMO_TARGET)
+return table.concat(defs,"\n")
+{$asm}
+alloc(RC_AMMO_CODE,2048,RC_AMMO_TARGET)
+label(RC_AMMO_ALLOW)
+label(RC_AMMO_ZERO)
+RC_AMMO_CODE:
+  push rax
+  test rcx,rcx
+  je RC_AMMO_ALLOW
+  mov rax,[rcx+18]
+  test rax,rax
+  je RC_AMMO_ALLOW
+  mov rax,[rax+18]
+  test rax,rax
+  je RC_AMMO_ALLOW
+  cmp dword ptr [rax+1A8],0
+  jne RC_AMMO_ALLOW
+  // Only block NEGATIVE supply changes for player-friendly units.
+  ucomiss xmm1,[RC_AMMO_ZERO]
+  jae RC_AMMO_ALLOW
+  pop rax
+  ret
+RC_AMMO_ALLOW:
+  pop rax
+  jmp RC_AMMO_ORIGINAL
+RC_AMMO_ZERO:
+  dd (float)0
+HOOK(RC_AMMO_TARGET,RC_AMMO_CODE,RC_AMMO_ORIGINAL)
+[DISABLE]
+{$lua}
+if syntaxcheck then return "define(RC_AMMO_TARGET,0x10000000)" end
+if not getOpenedProcessID() or getOpenedProcessID()==0 then error("Attach to Radio Commander first") end
+local base=LaunchMonoDataCollector()
+if not base or base==0 then error("Mono collector initialization failed") end
+local function check(ns,cls,field,expected)
+  local c=mono_findClass(ns,cls)
+  if not c or c==0 then error("Missing class: "..ns.."."..cls) end
+  local fs=mono_class_enumFields(c) or {}
+  for _,f in ipairs(fs) do
+    if f.name==field then
+      if f.offset~=expected then error("Unsafe offset mismatch "..ns.."."..cls.."."..field) end
+      return
+    end
+  end
+  error("Missing field: "..ns.."."..cls.."."..field)
+end
+check("Radio","UnitController","unitStats",0x18)
+check("Radio","SM_UniversalStatsSO","unitStats",0x18)
+check("Radio","UnitStats","unitSide",0x1A8)
+local defs={}
+local c_RC_AMMO_TARGET=mono_findClass("Radio","UnitController")
+if not c_RC_AMMO_TARGET or c_RC_AMMO_TARGET==0 then error("Missing Radio.UnitController") end
+local m_RC_AMMO_TARGET=mono_class_findMethod(c_RC_AMMO_TARGET,"AddSupplies")
+if not m_RC_AMMO_TARGET or m_RC_AMMO_TARGET==0 then error("Missing method UnitController.AddSupplies") end
+local a_RC_AMMO_TARGET=mono_compile_method(m_RC_AMMO_TARGET)
+if not a_RC_AMMO_TARGET or a_RC_AMMO_TARGET==0 then error("JIT failed: UnitController.AddSupplies") end
+defs[#defs+1]=string.format("define(RC_AMMO_TARGET,0x%X)",a_RC_AMMO_TARGET)
+return table.concat(defs,"\n")
+{$asm}
+UNHOOK(RC_AMMO_TARGET)
+dealloc(*)
+</AssemblerScript></CheatEntry><CheatEntry><ID>1</ID><Description>"Infinite stamina / friendly only [EXPERIMENTAL]"</Description><VariableType>Auto Assembler Script</VariableType><AssemblerScript>[ENABLE]
+{$lua}
+if syntaxcheck then return "define(RC_STA_TARGET,0x10000000)" end
+if not getOpenedProcessID() or getOpenedProcessID()==0 then error("Attach to Radio Commander first") end
+local base=LaunchMonoDataCollector()
+if not base or base==0 then error("Mono collector initialization failed") end
+local function check(ns,cls,field,expected)
+  local c=mono_findClass(ns,cls)
+  if not c or c==0 then error("Missing class: "..ns.."."..cls) end
+  local fs=mono_class_enumFields(c) or {}
+  for _,f in ipairs(fs) do
+    if f.name==field then
+      if f.offset~=expected then error("Unsafe offset mismatch "..ns.."."..cls.."."..field) end
+      return
+    end
+  end
+  error("Missing field: "..ns.."."..cls.."."..field)
+end
+check("Radio","UnitController","unitStats",0x18)
+check("Radio","SM_UniversalStatsSO","unitStats",0x18)
+check("Radio","UnitStats","unitSide",0x1A8)
+check("Radio","StaminaUnitController","unitController",0x20)
+local defs={}
+local c_RC_STA_TARGET=mono_findClass("Radio","StaminaUnitController")
+if not c_RC_STA_TARGET or c_RC_STA_TARGET==0 then error("Missing Radio.StaminaUnitController") end
+local m_RC_STA_TARGET=mono_class_findMethod(c_RC_STA_TARGET,"ConsumeStamina")
+if not m_RC_STA_TARGET or m_RC_STA_TARGET==0 then error("Missing method StaminaUnitController.ConsumeStamina") end
+local a_RC_STA_TARGET=mono_compile_method(m_RC_STA_TARGET)
+if not a_RC_STA_TARGET or a_RC_STA_TARGET==0 then error("JIT failed: StaminaUnitController.ConsumeStamina") end
+defs[#defs+1]=string.format("define(RC_STA_TARGET,0x%X)",a_RC_STA_TARGET)
+return table.concat(defs,"\n")
+{$asm}
+alloc(RC_STA_CODE,2048,RC_STA_TARGET)
+label(RC_STA_ALLOW)
+RC_STA_CODE:
+  push rax
+  test rcx,rcx
+  je RC_STA_ALLOW
+  mov rax,[rcx+20]
+  test rax,rax
+  je RC_STA_ALLOW
+  mov rax,[rax+18]
+  test rax,rax
+  je RC_STA_ALLOW
+  mov rax,[rax+18]
+  test rax,rax
+  je RC_STA_ALLOW
+  cmp dword ptr [rax+1A8],0
+  jne RC_STA_ALLOW
+  pop rax
+  ret
+RC_STA_ALLOW:
+  pop rax
+  jmp RC_STA_ORIGINAL
+HOOK(RC_STA_TARGET,RC_STA_CODE,RC_STA_ORIGINAL)
+[DISABLE]
+{$lua}
+if syntaxcheck then return "define(RC_STA_TARGET,0x10000000)" end
+if not getOpenedProcessID() or getOpenedProcessID()==0 then error("Attach to Radio Commander first") end
+local base=LaunchMonoDataCollector()
+if not base or base==0 then error("Mono collector initialization failed") end
+local function check(ns,cls,field,expected)
+  local c=mono_findClass(ns,cls)
+  if not c or c==0 then error("Missing class: "..ns.."."..cls) end
+  local fs=mono_class_enumFields(c) or {}
+  for _,f in ipairs(fs) do
+    if f.name==field then
+      if f.offset~=expected then error("Unsafe offset mismatch "..ns.."."..cls.."."..field) end
+      return
+    end
+  end
+  error("Missing field: "..ns.."."..cls.."."..field)
+end
+check("Radio","UnitController","unitStats",0x18)
+check("Radio","SM_UniversalStatsSO","unitStats",0x18)
+check("Radio","UnitStats","unitSide",0x1A8)
+check("Radio","StaminaUnitController","unitController",0x20)
+local defs={}
+local c_RC_STA_TARGET=mono_findClass("Radio","StaminaUnitController")
+if not c_RC_STA_TARGET or c_RC_STA_TARGET==0 then error("Missing Radio.StaminaUnitController") end
+local m_RC_STA_TARGET=mono_class_findMethod(c_RC_STA_TARGET,"ConsumeStamina")
+if not m_RC_STA_TARGET or m_RC_STA_TARGET==0 then error("Missing method StaminaUnitController.ConsumeStamina") end
+local a_RC_STA_TARGET=mono_compile_method(m_RC_STA_TARGET)
+if not a_RC_STA_TARGET or a_RC_STA_TARGET==0 then error("JIT failed: StaminaUnitController.ConsumeStamina") end
+defs[#defs+1]=string.format("define(RC_STA_TARGET,0x%X)",a_RC_STA_TARGET)
+return table.concat(defs,"\n")
+{$asm}
+UNHOOK(RC_STA_TARGET)
+dealloc(*)
+</AssemblerScript></CheatEntry><CheatEntry><ID>2</ID><Description>"Infinite fuel / friendly only [EXPERIMENTAL]"</Description><VariableType>Auto Assembler Script</VariableType><AssemblerScript>[ENABLE]
+{$lua}
+if syntaxcheck then return "define(RC_FUEL_TARGET,0x10000000)" end
+if not getOpenedProcessID() or getOpenedProcessID()==0 then error("Attach to Radio Commander first") end
+local base=LaunchMonoDataCollector()
+if not base or base==0 then error("Mono collector initialization failed") end
+local function check(ns,cls,field,expected)
+  local c=mono_findClass(ns,cls)
+  if not c or c==0 then error("Missing class: "..ns.."."..cls) end
+  local fs=mono_class_enumFields(c) or {}
+  for _,f in ipairs(fs) do
+    if f.name==field then
+      if f.offset~=expected then error("Unsafe offset mismatch "..ns.."."..cls.."."..field) end
+      return
+    end
+  end
+  error("Missing field: "..ns.."."..cls.."."..field)
+end
+check("Radio","UnitController","unitStats",0x18)
+check("Radio","SM_UniversalStatsSO","unitStats",0x18)
+check("Radio","UnitStats","unitSide",0x1A8)
+check("Radio","FuelUnitController","unitController",0x20)
+local defs={}
+local c_RC_FUEL_TARGET=mono_findClass("Radio","FuelUnitController")
+if not c_RC_FUEL_TARGET or c_RC_FUEL_TARGET==0 then error("Missing Radio.FuelUnitController") end
+local m_RC_FUEL_TARGET=mono_class_findMethod(c_RC_FUEL_TARGET,"ConsumeFuel")
+if not m_RC_FUEL_TARGET or m_RC_FUEL_TARGET==0 then error("Missing method FuelUnitController.ConsumeFuel") end
+local a_RC_FUEL_TARGET=mono_compile_method(m_RC_FUEL_TARGET)
+if not a_RC_FUEL_TARGET or a_RC_FUEL_TARGET==0 then error("JIT failed: FuelUnitController.ConsumeFuel") end
+defs[#defs+1]=string.format("define(RC_FUEL_TARGET,0x%X)",a_RC_FUEL_TARGET)
+return table.concat(defs,"\n")
+{$asm}
+alloc(RC_FUEL_CODE,2048,RC_FUEL_TARGET)
+label(RC_FUEL_ALLOW)
+RC_FUEL_CODE:
+  push rax
+  test rcx,rcx
+  je RC_FUEL_ALLOW
+  mov rax,[rcx+20]
+  test rax,rax
+  je RC_FUEL_ALLOW
+  mov rax,[rax+18]
+  test rax,rax
+  je RC_FUEL_ALLOW
+  mov rax,[rax+18]
+  test rax,rax
+  je RC_FUEL_ALLOW
+  cmp dword ptr [rax+1A8],0
+  jne RC_FUEL_ALLOW
+  pop rax
+  ret
+RC_FUEL_ALLOW:
+  pop rax
+  jmp RC_FUEL_ORIGINAL
+HOOK(RC_FUEL_TARGET,RC_FUEL_CODE,RC_FUEL_ORIGINAL)
+[DISABLE]
+{$lua}
+if syntaxcheck then return "define(RC_FUEL_TARGET,0x10000000)" end
+if not getOpenedProcessID() or getOpenedProcessID()==0 then error("Attach to Radio Commander first") end
+local base=LaunchMonoDataCollector()
+if not base or base==0 then error("Mono collector initialization failed") end
+local function check(ns,cls,field,expected)
+  local c=mono_findClass(ns,cls)
+  if not c or c==0 then error("Missing class: "..ns.."."..cls) end
+  local fs=mono_class_enumFields(c) or {}
+  for _,f in ipairs(fs) do
+    if f.name==field then
+      if f.offset~=expected then error("Unsafe offset mismatch "..ns.."."..cls.."."..field) end
+      return
+    end
+  end
+  error("Missing field: "..ns.."."..cls.."."..field)
+end
+check("Radio","UnitController","unitStats",0x18)
+check("Radio","SM_UniversalStatsSO","unitStats",0x18)
+check("Radio","UnitStats","unitSide",0x1A8)
+check("Radio","FuelUnitController","unitController",0x20)
+local defs={}
+local c_RC_FUEL_TARGET=mono_findClass("Radio","FuelUnitController")
+if not c_RC_FUEL_TARGET or c_RC_FUEL_TARGET==0 then error("Missing Radio.FuelUnitController") end
+local m_RC_FUEL_TARGET=mono_class_findMethod(c_RC_FUEL_TARGET,"ConsumeFuel")
+if not m_RC_FUEL_TARGET or m_RC_FUEL_TARGET==0 then error("Missing method FuelUnitController.ConsumeFuel") end
+local a_RC_FUEL_TARGET=mono_compile_method(m_RC_FUEL_TARGET)
+if not a_RC_FUEL_TARGET or a_RC_FUEL_TARGET==0 then error("JIT failed: FuelUnitController.ConsumeFuel") end
+defs[#defs+1]=string.format("define(RC_FUEL_TARGET,0x%X)",a_RC_FUEL_TARGET)
+return table.concat(defs,"\n")
+{$asm}
+UNHOOK(RC_FUEL_TARGET)
+dealloc(*)
+</AssemblerScript></CheatEntry><CheatEntry><ID>3</ID><Description>"Friendly units invulnerable [EXPERIMENTAL]"</Description><VariableType>Auto Assembler Script</VariableType><AssemblerScript>[ENABLE]
+{$lua}
+if syntaxcheck then return "define(RC_HIT_TARGET,0x10000000)\ndefine(RC_SIMPLE_TARGET,0x10000000)\ndefine(RC_DEAD_TARGET,0x10000000)" end
+if not getOpenedProcessID() or getOpenedProcessID()==0 then error("Attach to Radio Commander first") end
+local base=LaunchMonoDataCollector()
+if not base or base==0 then error("Mono collector initialization failed") end
+local function check(ns,cls,field,expected)
+  local c=mono_findClass(ns,cls)
+  if not c or c==0 then error("Missing class: "..ns.."."..cls) end
+  local fs=mono_class_enumFields(c) or {}
+  for _,f in ipairs(fs) do
+    if f.name==field then
+      if f.offset~=expected then error("Unsafe offset mismatch "..ns.."."..cls.."."..field) end
+      return
+    end
+  end
+  error("Missing field: "..ns.."."..cls.."."..field)
+end
+check("Radio","UnitController","unitStats",0x18)
+check("Radio","SM_UniversalStatsSO","unitStats",0x18)
+check("Radio","UnitStats","unitSide",0x1A8)
+local defs={}
+local c_RC_HIT_TARGET=mono_findClass("Radio","UnitController")
+if not c_RC_HIT_TARGET or c_RC_HIT_TARGET==0 then error("Missing Radio.UnitController") end
+local m_RC_HIT_TARGET=mono_class_findMethod(c_RC_HIT_TARGET,"DamageTaken")
+if not m_RC_HIT_TARGET or m_RC_HIT_TARGET==0 then error("Missing method UnitController.DamageTaken") end
+local a_RC_HIT_TARGET=mono_compile_method(m_RC_HIT_TARGET)
+if not a_RC_HIT_TARGET or a_RC_HIT_TARGET==0 then error("JIT failed: UnitController.DamageTaken") end
+defs[#defs+1]=string.format("define(RC_HIT_TARGET,0x%X)",a_RC_HIT_TARGET)
+local c_RC_SIMPLE_TARGET=mono_findClass("Radio","UnitController")
+if not c_RC_SIMPLE_TARGET or c_RC_SIMPLE_TARGET==0 then error("Missing Radio.UnitController") end
+local m_RC_SIMPLE_TARGET=mono_class_findMethod(c_RC_SIMPLE_TARGET,"DamageTakenSimple")
+if not m_RC_SIMPLE_TARGET or m_RC_SIMPLE_TARGET==0 then error("Missing method UnitController.DamageTakenSimple") end
+local a_RC_SIMPLE_TARGET=mono_compile_method(m_RC_SIMPLE_TARGET)
+if not a_RC_SIMPLE_TARGET or a_RC_SIMPLE_TARGET==0 then error("JIT failed: UnitController.DamageTakenSimple") end
+defs[#defs+1]=string.format("define(RC_SIMPLE_TARGET,0x%X)",a_RC_SIMPLE_TARGET)
+local c_RC_DEAD_TARGET=mono_findClass("Radio","UnitController")
+if not c_RC_DEAD_TARGET or c_RC_DEAD_TARGET==0 then error("Missing Radio.UnitController") end
+local m_RC_DEAD_TARGET=mono_class_findMethod(c_RC_DEAD_TARGET,"HealthyToDeadCore")
+if not m_RC_DEAD_TARGET or m_RC_DEAD_TARGET==0 then error("Missing method UnitController.HealthyToDeadCore") end
+local a_RC_DEAD_TARGET=mono_compile_method(m_RC_DEAD_TARGET)
+if not a_RC_DEAD_TARGET or a_RC_DEAD_TARGET==0 then error("JIT failed: UnitController.HealthyToDeadCore") end
+defs[#defs+1]=string.format("define(RC_DEAD_TARGET,0x%X)",a_RC_DEAD_TARGET)
+return table.concat(defs,"\n")
+{$asm}
+alloc(RC_HIT_CODE,2048,RC_HIT_TARGET)
+alloc(RC_SIMPLE_CODE,2048,RC_SIMPLE_TARGET)
+alloc(RC_DEAD_CODE,2048,RC_DEAD_TARGET)
+label(RC_HIT_ALLOW)
+RC_HIT_CODE:
+  push rax
+  test rcx,rcx
+  je RC_HIT_ALLOW
+  mov rax,[rcx+18]
+  test rax,rax
+  je RC_HIT_ALLOW
+  mov rax,[rax+18]
+  test rax,rax
+  je RC_HIT_ALLOW
+  cmp dword ptr [rax+1A8],0
+  jne RC_HIT_ALLOW
+  pop rax
+  ret
+RC_HIT_ALLOW:
+  pop rax
+  jmp RC_HIT_ORIGINAL
+label(RC_SIMPLE_ALLOW)
+RC_SIMPLE_CODE:
+  push rax
+  test rcx,rcx
+  je RC_SIMPLE_ALLOW
+  mov rax,[rcx+18]
+  test rax,rax
+  je RC_SIMPLE_ALLOW
+  mov rax,[rax+18]
+  test rax,rax
+  je RC_SIMPLE_ALLOW
+  cmp dword ptr [rax+1A8],0
+  jne RC_SIMPLE_ALLOW
+  pop rax
+  xor eax,eax
+  ret
+RC_SIMPLE_ALLOW:
+  pop rax
+  jmp RC_SIMPLE_ORIGINAL
+label(RC_DEAD_ALLOW)
+RC_DEAD_CODE:
+  push rax
+  test rcx,rcx
+  je RC_DEAD_ALLOW
+  mov rax,[rcx+18]
+  test rax,rax
+  je RC_DEAD_ALLOW
+  mov rax,[rax+18]
+  test rax,rax
+  je RC_DEAD_ALLOW
+  cmp dword ptr [rax+1A8],0
+  jne RC_DEAD_ALLOW
+  pop rax
+  ret
+RC_DEAD_ALLOW:
+  pop rax
+  jmp RC_DEAD_ORIGINAL
+HOOK(RC_HIT_TARGET,RC_HIT_CODE,RC_HIT_ORIGINAL)
+HOOK(RC_SIMPLE_TARGET,RC_SIMPLE_CODE,RC_SIMPLE_ORIGINAL)
+HOOK(RC_DEAD_TARGET,RC_DEAD_CODE,RC_DEAD_ORIGINAL)
+[DISABLE]
+{$lua}
+if syntaxcheck then return "define(RC_HIT_TARGET,0x10000000)\ndefine(RC_SIMPLE_TARGET,0x10000000)\ndefine(RC_DEAD_TARGET,0x10000000)" end
+if not getOpenedProcessID() or getOpenedProcessID()==0 then error("Attach to Radio Commander first") end
+local base=LaunchMonoDataCollector()
+if not base or base==0 then error("Mono collector initialization failed") end
+local function check(ns,cls,field,expected)
+  local c=mono_findClass(ns,cls)
+  if not c or c==0 then error("Missing class: "..ns.."."..cls) end
+  local fs=mono_class_enumFields(c) or {}
+  for _,f in ipairs(fs) do
+    if f.name==field then
+      if f.offset~=expected then error("Unsafe offset mismatch "..ns.."."..cls.."."..field) end
+      return
+    end
+  end
+  error("Missing field: "..ns.."."..cls.."."..field)
+end
+check("Radio","UnitController","unitStats",0x18)
+check("Radio","SM_UniversalStatsSO","unitStats",0x18)
+check("Radio","UnitStats","unitSide",0x1A8)
+local defs={}
+local c_RC_HIT_TARGET=mono_findClass("Radio","UnitController")
+if not c_RC_HIT_TARGET or c_RC_HIT_TARGET==0 then error("Missing Radio.UnitController") end
+local m_RC_HIT_TARGET=mono_class_findMethod(c_RC_HIT_TARGET,"DamageTaken")
+if not m_RC_HIT_TARGET or m_RC_HIT_TARGET==0 then error("Missing method UnitController.DamageTaken") end
+local a_RC_HIT_TARGET=mono_compile_method(m_RC_HIT_TARGET)
+if not a_RC_HIT_TARGET or a_RC_HIT_TARGET==0 then error("JIT failed: UnitController.DamageTaken") end
+defs[#defs+1]=string.format("define(RC_HIT_TARGET,0x%X)",a_RC_HIT_TARGET)
+local c_RC_SIMPLE_TARGET=mono_findClass("Radio","UnitController")
+if not c_RC_SIMPLE_TARGET or c_RC_SIMPLE_TARGET==0 then error("Missing Radio.UnitController") end
+local m_RC_SIMPLE_TARGET=mono_class_findMethod(c_RC_SIMPLE_TARGET,"DamageTakenSimple")
+if not m_RC_SIMPLE_TARGET or m_RC_SIMPLE_TARGET==0 then error("Missing method UnitController.DamageTakenSimple") end
+local a_RC_SIMPLE_TARGET=mono_compile_method(m_RC_SIMPLE_TARGET)
+if not a_RC_SIMPLE_TARGET or a_RC_SIMPLE_TARGET==0 then error("JIT failed: UnitController.DamageTakenSimple") end
+defs[#defs+1]=string.format("define(RC_SIMPLE_TARGET,0x%X)",a_RC_SIMPLE_TARGET)
+local c_RC_DEAD_TARGET=mono_findClass("Radio","UnitController")
+if not c_RC_DEAD_TARGET or c_RC_DEAD_TARGET==0 then error("Missing Radio.UnitController") end
+local m_RC_DEAD_TARGET=mono_class_findMethod(c_RC_DEAD_TARGET,"HealthyToDeadCore")
+if not m_RC_DEAD_TARGET or m_RC_DEAD_TARGET==0 then error("Missing method UnitController.HealthyToDeadCore") end
+local a_RC_DEAD_TARGET=mono_compile_method(m_RC_DEAD_TARGET)
+if not a_RC_DEAD_TARGET or a_RC_DEAD_TARGET==0 then error("JIT failed: UnitController.HealthyToDeadCore") end
+defs[#defs+1]=string.format("define(RC_DEAD_TARGET,0x%X)",a_RC_DEAD_TARGET)
+return table.concat(defs,"\n")
+{$asm}
+UNHOOK(RC_DEAD_TARGET)
+UNHOOK(RC_SIMPLE_TARGET)
+UNHOOK(RC_HIT_TARGET)
+dealloc(*)
+</AssemblerScript></CheatEntry><CheatEntry><ID>4</ID><Description>"READ-ONLY native JIT export (map-marker research)"</Description><VariableType>Auto Assembler Script</VariableType><AssemblerScript>[ENABLE]
+{$lua}
+if syntaxcheck then return end
+if not getOpenedProcessID() or getOpenedProcessID()==0 then error('Attach game first') end
+local mono=LaunchMonoDataCollector()
+if not mono or mono==0 then error('Mono unavailable') end
+local groups={
+  {'Radio','TokenUpdateController','UpdateToken'},
+  {'Radio','TokenUpdateController','UpdateMe'},
+  {'Radio','TokenUpdateController','LerpMe'},
+  {'Lemrh','CheatEntity','SwitchCheat'},
+  {'Lemrh','CheatController','CheatSwitched'},
+  {'Radio','UnitController','AddSupplies'},
+  {'Radio','StaminaUnitController','ConsumeStamina'},
+  {'Radio','FuelUnitController','ConsumeFuel'},
+  {'Radio','UnitController','DamageTaken'},
+  {'Radio','UnitController','DamageTakenSimple'},
+  {'Radio','UnitController','HealthyToDeadCore'}
+}
+local path=(os.getenv('TEMP') or '.')..'\\RadioCommander_NativeJIT_Report.txt'
+local o=assert(io.open(path,'w'))
+local function writeln(s) o:write(tostring(s),'\n') end
+writeln('READ ONLY - JIT native code inspection. No save data is changed.')
+for _,g in ipairs(groups) do
+  local ns,cls,meth=g[1],g[2],g[3]
+  writeln('\n=== '..ns..'.'..cls..':'..meth..' ===')
+  local ok,res=pcall(function()
+    local c=mono_findClass(ns,cls)
+    if not c or c==0 then return 'Class missing' end
+    local m=mono_class_findMethod(c,meth)
+    if not m or m==0 then return 'Method missing' end
+    local a=mono_compile_method(m)
+    if not a or a==0 then return 'JIT compile failed' end
+    local ji=mono_getJitInfo(a)
+    local total=ji and ji.code_size or 128
+    writeln(('JIT address: 0x%X; size: %s'):format(a,tostring(total)))
+    total=math.min(math.max(total,16),320)
+    local pos=a
+    local finish=a+total
+    while pos&lt;finish do
+      local line=disassemble(pos)
+      writeln(line)
+      local step=getInstructionSize(pos)
+      if not step or step&lt;1 or step&gt;32 then break end
+      pos=pos+step
+    end
+    return 'OK'
+  end)
+  writeln(ok and res or ('ERROR: '..tostring(res)))
+end
+writeln('\n=== Radio.UnitAff/UnitTeam fields ===')
+for _,cls in ipairs({'UnitAff','UnitTeam'}) do
+  local c=mono_findClass('Radio',cls)
+  if c and c~=0 then
+    for _,f in ipairs(mono_class_enumFields(c) or {}) do
+      writeln(cls..'.'..tostring(f.name)..' off='..tostring(f.offset)..' typename='..tostring(f.typename))
+    end
+  end
+end
+o:close()
+print('Read-only JIT diagnostic: '..path)
+showMessage('Read-only JIT diagnostic saved:\n'..path)
+{$asm}
+[DISABLE]
+</AssemblerScript></CheatEntry></CheatEntries></CheatTable>
